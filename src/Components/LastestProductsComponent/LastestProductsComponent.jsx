@@ -7,7 +7,7 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Rating from '@mui/material/Rating';
 import Title from "../TitleComponent/Title";
-
+import "./css/index.scss"
 
 const LastestProductComponent = () => {
     const dispatch = useDispatch()
@@ -32,7 +32,7 @@ const LastestProductComponent = () => {
                                 image={el.images[0] ? el.images[0].url : ''}
                             />
                             <CardContent>
-                                <Typography variant="body2" color="text.secondary" textAlign={'left'}>
+                                <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name'>
                                     {el.name}
                                 </Typography>
                                 <div style={{ display: 'flex', overflowWrap: 'break-word' }}>
