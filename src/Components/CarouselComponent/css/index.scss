@@ -1,5 +1,5 @@
 .carousel-items {
-    height: 350px;
+    max-height: 500px;
     background-color: #343A40;
     padding: 20px;
     color: #ffffff;
@@ -14,11 +14,11 @@
 
 
 .carousel .control-prev.control-arrow {
-    padding: 30px;
+    padding: 20px;
 }
 
 .carousel .control-next.control-arrow {
-    padding: 30px;
+    padding: 20px;
 }
 
 .carousel .carousel-status {
