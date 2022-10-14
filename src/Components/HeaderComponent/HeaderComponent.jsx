@@ -21,17 +21,20 @@ const HeaderComponent = () => {
     ]
     return (
         <>
-            <div className="header-container-temp">
-                {
-                    arrHeader.map((el, index) => {
-                        return (
-                            <div className="items" key={index}>
-                                {el.title}
-                            </div>
-                        )
-                    })
-                }
+            <div style={{ backgroundColor: '#F0E9E9' }}>
+                <div className="header-container-temp">
+                    {
+                        arrHeader.map((el, index) => {
+                            return (
+                                <div className="items" key={index}>
+                                    {el.title}
+                                </div>
+                            )
+                        })
+                    }
+                </div>
             </div>
+
             <div className="container">
                 <div className="header-container" >
                     <div className="left-side">

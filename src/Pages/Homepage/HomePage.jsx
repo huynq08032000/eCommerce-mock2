@@ -1,5 +1,6 @@
 import React from "react";
 import CarouselComponent from "../../Components/CarouselComponent/CarouselComponent";
+import CategoriesComponent from "../../Components/CategoriesComponent/CatogiresComponent";
 import FooterComponent from "../../Components/FooterComponent/FooterComponent";
 import HeaderComponent from "../../Components/HeaderComponent/HeaderComponent";
 import LastestProductComponent from "../../Components/LastestProductsComponent/LastestProductsComponent";
@@ -13,7 +14,7 @@ const HomePage = () => {
             <div className="main-container">
                 <div className="home-slider">
                     <div className="left-side-home">
-
+                        <CategoriesComponent/>
                     </div>
                     <div className="right-side-home">
                         <CarouselComponent />
