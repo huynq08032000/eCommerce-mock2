@@ -1,0 +1,26 @@
+.carousel-items {
+    max-height: 500px;
+    background-color: #343A40;
+    padding: 20px;
+    color: #ffffff;
+
+    .title {
+        text-transform: uppercase;
+        padding: 5px;
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
+
+.carousel .control-prev.control-arrow {
+    padding: 20px;
+}
+
+.carousel .control-next.control-arrow {
+    padding: 20px;
+}
+
+.carousel .carousel-status {
+    display: none;
+}
