@@ -7,16 +7,16 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 const HeaderComponent = () => {
     const arrHeader = [
         {
-            title : 'About us'
+            title: 'About us'
         },
         {
-            title : 'Contact'
+            title: 'Contact'
         },
         {
-            title : 'Store',
+            title: 'Store',
         },
         {
-            title : 'Track Orders'
+            title: 'Track Orders'
         }
     ]
     return (
@@ -24,7 +24,7 @@ const HeaderComponent = () => {
             <div className="header-container-temp">
                 {
                     arrHeader.map((el, index) => {
-                        return(
+                        return (
                             <div className="items" key={index}>
                                 {el.title}
                             </div>
@@ -32,18 +32,21 @@ const HeaderComponent = () => {
                     })
                 }
             </div>
-            <div className="header-container" >
-                <div className="left-side">
-                    <div className="title">Shop app</div>
-                </div>
-                <div className="middle-side">
-                    <SearchComponent />
-                </div>
-                <div className="right-side">
-                    <div className="child-items"><ShoppingCartOutlinedIcon style={{ margin: '0 5px' }} /></div>
-                    <div className="child-items"><PersonOutlineOutlinedIcon style={{ margin: '0 5px' }} /></div>
+            <div className="container">
+                <div className="header-container" >
+                    <div className="left-side">
+                        <div className="title">Shop app</div>
+                    </div>
+                    <div className="middle-side">
+                        <SearchComponent />
+                    </div>
+                    <div className="right-side">
+                        <div className="child-items"><ShoppingCartOutlinedIcon style={{ margin: '0 5px' }} /></div>
+                        <div className="child-items"><PersonOutlineOutlinedIcon style={{ margin: '0 5px' }} /></div>
+                    </div>
                 </div>
             </div>
+
 
         </>
     )
