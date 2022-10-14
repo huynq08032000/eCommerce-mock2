@@ -1,24 +1,33 @@
 .header-container-temp {
     display: flex;
-    margin: 0 auto;
     padding: 5px 20px;
-    background-color: #F0E9E9;
-    width: 100%;
+    margin: 0 auto;
+    max-width: 100%;
+    width: 1440px;
 }
+
 .items {
     margin: 0 10px;
-    &:hover{
+
+    &:hover {
         cursor: pointer;
         text-decoration: underline;
     }
 }
-.header-container {
+
+.container {
     background-color: #FFD333;
+}
+
+.header-container {
+    margin: 0 auto;
+    max-width: 100%;
+    width: 1540px;
     display: flex;
     justify-content: space-between;
     padding: 20px 20px;
     align-items: center;
-    margin: 0 auto;
+
 }
 
 .header-container .left-side {
@@ -39,9 +48,10 @@
 .header-container .middle-side {
     width: 50%;
 }
+
 .header-container .right-side {
     display: flex;
-    width: 15%;
+    width: 10%;
 }
 
 .header-container .right-side .child-items {
@@ -53,6 +63,7 @@
     letter-spacing: 1px;
     display: flex;
     align-items: center;
+
     &:hover {
         cursor: pointer;
         // color: #fff;

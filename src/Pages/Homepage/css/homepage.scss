@@ -1,0 +1,14 @@
+.home-slider {
+    display: flex;
+}
+.left-side-home {
+    background-color: #3D464D;
+    width: 205px;
+    height: 600px;
+    margin-right: 5px;
+    // padding: 10px;
+    color: #fff;
+}
+.right-side-home{
+    width: calc(100% - 205px);
+}
