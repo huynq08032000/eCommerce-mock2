@@ -1,8 +1,10 @@
 .cate-item {
     display: flex;
     padding: 15px;
+
     &:hover {
         background-color: #B59628;
+        cursor: pointer;
     }
 }
 
@@ -10,6 +12,11 @@
     width: 90%;
     font-size: 15px;
 }
-.cate-item-arrow{
+
+.cate-item-arrow {
     width: 10%;
+}
+
+.active {
+    background-color: #B59628;
 }
