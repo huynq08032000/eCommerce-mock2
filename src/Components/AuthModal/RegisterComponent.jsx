@@ -12,7 +12,7 @@ const validationSchema = yup.object({
         .string('Enter your name')
         .required('Your name is required'),
     email: yup
-        .string("Enter your phone")
+        .string("Enter your email")
         .matches(regexEmail, "Invalid Email")
         .required("Email is required"),
     password: yup
