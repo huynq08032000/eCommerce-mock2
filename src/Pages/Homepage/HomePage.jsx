@@ -1,4 +1,5 @@
 import React from "react";
+import BenefitComponent from "../../Components/BenefitComponent/BenefitComponent";
 import CarouselComponent from "../../Components/CarouselComponent/CarouselComponent";
 import CategoriesComponent from "../../Components/CategoriesComponent/CatogiresComponent";
 import FooterComponent from "../../Components/FooterComponent/FooterComponent";
@@ -25,9 +26,9 @@ const HomePage = () => {
                             <div className="child-carouse-footer-items"><CarouselComponent /></div>
                             <div className="child-carouse-footer-items"><CarouselComponent /></div>
                         </div>
-
                     </div>
                 </div>
+                <BenefitComponent/>
                 {/* <CarouselComponent />
                 <LastestProductComponent/>
                 <FooterComponent label={'Developed by HuyNQ129'}/> */}

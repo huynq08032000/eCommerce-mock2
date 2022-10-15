@@ -1,0 +1,35 @@
+.card-benefit-item {
+    padding: 10px;
+    background-color: #F8F8F8;
+    border: 1px solid #DFD8D8;
+    border-radius: 5px;
+    width: 25%;
+    margin: 5px;
+
+    &:first-child {
+        margin-left: 0px;
+    }
+
+    &:last-child {
+        margin-right: 0px;
+    }
+
+}
+
+.benefit-item-container {
+    display: flex;
+    padding: 10px;
+
+    .benefit-item-image {
+        padding: 10px;
+    }
+
+    .benefit-item-content {
+        margin-left: 20px;
+
+        .benefit-title {
+            font-weight: 600;
+            font-size: 20px;
+        }
+    }
+}
