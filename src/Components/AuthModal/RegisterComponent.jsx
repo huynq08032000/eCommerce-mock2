@@ -1,5 +1,6 @@
-import { Button, IconButton, Link, TextField, Typography } from "@mui/material";
-import React from "react";
+import { IconButton, Link, TextField, Typography } from "@mui/material";
+import LoadingButton from '@mui/lab/LoadingButton';
+import React, { useState } from "react";
 import './index.scss'
 import ShopAppComponent from "./ShopAppComponent";
 import CloseIcon from '@mui/icons-material/Close';
@@ -26,6 +27,7 @@ const validationSchema = yup.object({
 });
 
 const RegisterComponent = ({ setComponent, handleClose }) => {
+    const [loading, setLoading] = useState(false)
     const handleLogin = () => {
         setComponent('login')
     }
@@ -73,7 +75,7 @@ const RegisterComponent = ({ setComponent, handleClose }) => {
                                 {formik.errors.password && <Typography style={{ color: 'red' }}>{formik.errors.password}</Typography>}
                                 <TextField name='confirmPassword' placeholder="Confirm Password" type={'password'} fullWidth variant="standard" style={{ margin: '10px 0px' }} onChange={myHandleChange} />
                                 {formik.errors.confirmPassword && <Typography style={{ color: 'red' }}>{formik.errors.confirmPassword}</Typography>}
-                                <Button type="primary" style={{ backgroundColor: '#FFD333', fontWeight: '700', color: '#000000' }} fullWidth>Register</Button>
+                                <LoadingButton type="primary" style={{ backgroundColor: '#FFD333', fontWeight: '700', color: '#000000' }} fullWidth loading={loading} loadingPosition='start'>Register</LoadingButton>
                             </form>
                         </div>
                         <div className="footer" onClick={handleLogin}>
