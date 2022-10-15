@@ -57,13 +57,13 @@ const LastestProductComponent = () => {
                                             </Tag>
                                         </div>
                                         <div>
-                                            <IconButton color="primary" aria-label="add to shopping cart">
+                                            <IconButton color="primary" aria-label="add to shopping cart" onClick={()=>console.log(el.id)}>
                                                 <AddShoppingCartIcon />
                                             </IconButton>
                                         </div>
                                     </div>
-                                    </> : <><div>
-                                        <Tag color="#cd201f" style={{ borderRadius: '56px' }}>
+                                    </> : <><div style={{textAlign : 'left' }}>
+                                        <Tag color="#cd201f" style={{ borderRadius: '56px',}}>
                                             Out stock
                                         </Tag>
                                     </div>
