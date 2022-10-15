@@ -1,0 +1,32 @@
+.css-1bbhr3b {
+    padding: 0 !important;
+    height: 350px;
+    width: 800px !important;
+}
+
+.modal-container {
+    height: 100%;
+    display: flex;
+
+    .modal-right-side {
+        width: 50%;
+        padding: 40px;
+        border-radius: 20px 0 0 20px;
+    }
+
+    .modal-left-side {
+        width: 50%;
+        padding: 40px;
+        border-radius: 0 20px 20px 0;
+    }
+}
+
+.title-auth-component {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.css-1ps4owl-MuiTypography-root-MuiLink-root {
+    color: #000000 !important;
+    text-decoration: none !important;
+}
