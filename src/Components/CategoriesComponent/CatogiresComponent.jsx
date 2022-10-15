@@ -14,7 +14,6 @@ const CategoriesComponent = () => {
     const fetchCategories = async () => {
         try {
             const res = await axios.get(getAllCategories)
-            console.log(res.data.data)
             setCateItems(res.data.data)
         } catch (error) {
             console.log(error)

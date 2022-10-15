@@ -1,5 +1,5 @@
 import { CardContent, Grid, Typography } from "@mui/material";
-import { Image } from "antd";
+import { Image, Tag } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchLastestProduct } from "../../redux/ProductsSlice";
@@ -7,6 +7,8 @@ import Card from '@mui/material/Card';
 import CardMedia from '@mui/material/CardMedia';
 import Rating from '@mui/material/Rating';
 import Title from "../TitleComponent/Title";
+import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
+import IconButton from '@mui/material/IconButton';
 import "./css/index.scss"
 
 const LastestProductComponent = () => {
@@ -31,9 +33,12 @@ const LastestProductComponent = () => {
                                 height="194"
                                 image={el.images[0] ? el.images[0].url : ''}
                             />
-                            <CardContent>
-                                <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name'>
+                            <CardContent style={{ padding: '5px 0' }}>
+                                <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={'20px'} fontWeight={'700'}>
                                     {el.name}
+                                </Typography>
+                                <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name'>
+                                    {el.id}
                                 </Typography>
                                 <div style={{ display: 'flex', overflowWrap: 'break-word' }}>
                                     <Rating name="read-only" value={parseFloat(el.rating)} readOnly />
@@ -41,11 +46,31 @@ const LastestProductComponent = () => {
                                         {el.numOfReviews} reviewers
                                     </div>
                                 </div>
-                                <Typography style={{ fontSize: '20px', fontWeight: '700', letterSpacing : '1px' }} color="text.secondary" textAlign={'left'}>
+                                <Typography style={{ fontSize: '20px', fontWeight: '700', letterSpacing: '1px' }} color="text.secondary" textAlign={'left'}>
                                     ${el.price}
                                 </Typography>
-                            </CardContent>
+                                {
+                                    el.countInStock > 0 ? <><div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                                        <div>
+                                            <Tag color="#87d068" style={{ borderRadius: '56px' }}>
+                                                Avaliable
+                                            </Tag>
+                                        </div>
+                                        <div>
+                                            <IconButton color="primary" aria-label="add to shopping cart">
+                                                <AddShoppingCartIcon />
+                                            </IconButton>
+                                        </div>
+                                    </div>
+                                    </> : <><div>
+                                        <Tag color="#cd201f" style={{ borderRadius: '56px' }}>
+                                            Out stock
+                                        </Tag>
+                                    </div>
+                                    </>
+                                }
 
+                            </CardContent>
                         </Card>
                     </Grid>
                 })}
