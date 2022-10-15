@@ -1,6 +1,9 @@
 .cate-item {
     display: flex;
     padding: 10px;
+    &:hover {
+        background-color: #B59628;
+    }
 }
 
 .cate-item-name {

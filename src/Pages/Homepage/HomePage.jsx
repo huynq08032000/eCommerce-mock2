@@ -14,10 +14,18 @@ const HomePage = () => {
             <div className="main-container">
                 <div className="home-slider">
                     <div className="left-side-home">
-                        <CategoriesComponent/>
+                        <CategoriesComponent />
                     </div>
                     <div className="right-side-home">
-                        <CarouselComponent />
+                        <div className="child-carousel-header">
+                            <CarouselComponent />
+                        </div>
+                        <div className="child-carousel-footer">
+                            <div className="child-carouse-footer-items"><CarouselComponent /></div>
+                            <div className="child-carouse-footer-items"><CarouselComponent /></div>
+                            <div className="child-carouse-footer-items"><CarouselComponent /></div>
+                        </div>
+
                     </div>
                 </div>
                 {/* <CarouselComponent />

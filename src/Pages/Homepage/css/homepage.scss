@@ -1,14 +1,27 @@
 .home-slider {
     display: flex;
+    height: 650px;
 }
 .left-side-home {
     background-color: #3D464D;
-    width: 20%;
-    height: 600px;
+    width: 25%;
+    height: 100%;
     margin-right: 5px;
     // padding: 10px;
     color: #fff;
 }
 .right-side-home{
-    width: calc(100% - 205px);
+    width: 75%;
+}
+
+.child-carousel-footer {
+    margin-top: 5px;
+    max-width: 100%;
+    display: flex;
+}
+
+.child-carouse-footer-items {
+    max-width: 33%;
+    margin: 0 5px;
+    margin-left: 0px;
 }
