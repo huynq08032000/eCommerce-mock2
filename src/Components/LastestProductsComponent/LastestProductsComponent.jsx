@@ -63,7 +63,7 @@ const LastestProductComponent = () => {
                                         </div>
                                     </div>
                                     </> : <><div style={{textAlign : 'left' }}>
-                                        <Tag color="#cd201f" style={{ borderRadius: '56px',}}>
+                                        <Tag color="#cd201f" style={{ borderRadius: '56px',marginTop : '5px'}}>
                                             Out stock
                                         </Tag>
                                     </div>
