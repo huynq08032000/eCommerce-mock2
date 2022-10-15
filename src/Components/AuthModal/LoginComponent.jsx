@@ -9,7 +9,7 @@ import { regexEmail } from "../../ultis/ultis";
 
 const validationSchema = yup.object({
     email: yup
-        .string("Enter your phone")
+        .string("Enter your email")
         .matches(regexEmail, "Invalid Email")
         .required("Email is required"),
     password: yup
