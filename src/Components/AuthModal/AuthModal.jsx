@@ -1,8 +1,10 @@
 import { Box, Modal, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import LoginComponent from "./LoginComponent";
 import './index.scss'
 import 'antd/dist/antd.css';
+import ForgotComponent from "./ForogtComponent";
+import RegisterComponent from "./RegisterComponent";
 
 const style = {
     position: 'absolute',
@@ -10,16 +12,33 @@ const style = {
     left: '50%',
     transform: 'translate(-50%, -50%)',
     width: 600,
-    maxWidth : '100%',
+    maxWidth: '100%',
     bgcolor: 'background.paper',
-    borderRadius : '20px',
+    borderRadius: '20px',
     boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.25)',
     p: 0,
 };
 
 const AuthModal = ({ open, setOpen }) => {
-    const handleClose = () => setOpen(false);
-
+    const [component, setComponent] = useState('login');
+    const handleClose = () => {
+        setComponent('login')
+        setOpen(false)
+    };
+    const renderModal = (type) => {
+        switch (type) {
+            case 'login': {
+                return <><LoginComponent setComponent={setComponent} /></>
+            }
+            case 'forgot': {
+                return <><ForgotComponent setComponent={setComponent} /></>;
+            }
+            case 'register' :{
+                return <><RegisterComponent setComponent={setComponent}/></>
+            }
+            default: return component;
+        }
+    }
     return (
         <>
             <Modal
@@ -29,7 +48,7 @@ const AuthModal = ({ open, setOpen }) => {
                 aria-describedby="modal-modal-description"
             >
                 <Box sx={style}>
-                    <LoginComponent/>
+                    {renderModal(component)}
                 </Box>
             </Modal>
         </>

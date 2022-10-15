@@ -1,6 +1,6 @@
 .css-1bbhr3b {
     padding: 0 !important;
-    height: 350px;
+    height: 400px;
     width: 800px !important;
 }
 
@@ -29,4 +29,19 @@
 .css-1ps4owl-MuiTypography-root-MuiLink-root {
     color: #000000 !important;
     text-decoration: none !important;
+}
+
+.input-forgot {
+    input {
+        width: 80%;
+    }
+}
+.footer {
+    margin-top: 10px;
+    width: 100%;
+    text-align: center;
+    
+    &:hover{
+        cursor: pointer;
+    }
 }
