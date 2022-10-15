@@ -7,6 +7,9 @@ import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { regexEmail } from "../../ultis/ultis";
+import axios from "axios";
+import { apiRegister } from "../../config/api";
+import { Alert } from "antd";
 
 const validationSchema = yup.object({
     name: yup
@@ -28,6 +31,7 @@ const validationSchema = yup.object({
 
 const RegisterComponent = ({ setComponent, handleClose }) => {
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState({ type: '', message: '' })
     const handleLogin = () => {
         setComponent('login')
     }
@@ -43,8 +47,23 @@ const RegisterComponent = ({ setComponent, handleClose }) => {
             handleRegister(values);
         }
     });
-    const handleRegister = (values) => {
-        console.log(values)
+    const handleRegister = async (values) => {
+        const formValues = {
+            username: values.name,
+            email: values.email,
+            password: values.password
+        }
+        setLoading(true)
+        try {
+            const res = await axios.post(apiRegister, formValues)
+            setMessage({...message, type : 'success', message : res.data.message})
+            formik.resetForm()
+        } catch (error) {
+            // toast.error(error.response.data.message, toastCss)
+            setMessage({...message,type : 'error', message : error.response.data.message})
+        }
+        setLoading(false)
+
     }
     const myHandleChange = (event) => {
         formik.handleChange(event);
@@ -66,6 +85,12 @@ const RegisterComponent = ({ setComponent, handleClose }) => {
                             Welcome to Shop App
                         </div>
                         <div>
+                            {message.message !== '' && <Alert
+                                description={message.message}
+                                type={message.type}
+                                showIcon
+                            />}
+
                             <form onSubmit={formik.handleSubmit}>
                                 <TextField name='name' placeholder="User Name" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }} onChange={myHandleChange} />
                                 {formik.errors.name && <Typography style={{ color: 'red' }}>{formik.errors.name}</Typography>}
@@ -82,9 +107,7 @@ const RegisterComponent = ({ setComponent, handleClose }) => {
                             Login
                         </div>
                     </div>
-
                 </div>
-
             </div>
         </>
     )
