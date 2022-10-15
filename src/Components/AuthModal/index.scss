@@ -1,6 +1,6 @@
 .css-1bbhr3b {
     padding: 0 !important;
-    height: 400px;
+    height: 500px;
     width: 800px !important;
 }
 
@@ -24,8 +24,6 @@
         }
     }
 }
-
-
 
 .title-auth-component {
     font-weight: 500;
@@ -51,4 +49,8 @@
     &:hover {
         cursor: pointer;
     }
+}
+
+.error {
+    color : 'red';
 }
