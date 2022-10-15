@@ -28,13 +28,13 @@ const AuthModal = ({ open, setOpen }) => {
     const renderModal = (type) => {
         switch (type) {
             case 'login': {
-                return <><LoginComponent setComponent={setComponent} /></>
+                return <><LoginComponent setComponent={setComponent} handleClose={handleClose}/></>
             }
             case 'forgot': {
-                return <><ForgotComponent setComponent={setComponent} /></>;
+                return <><ForgotComponent setComponent={setComponent} handleClose={handleClose}/></>;
             }
             case 'register' :{
-                return <><RegisterComponent setComponent={setComponent}/></>
+                return <><RegisterComponent setComponent={setComponent} handleClose={handleClose}/></>
             }
             default: return component;
         }

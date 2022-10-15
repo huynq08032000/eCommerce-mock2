@@ -1,9 +1,10 @@
-import { Button, Link, TextField } from "@mui/material";
+import { Button, IconButton, Link, TextField } from "@mui/material";
 import React from "react";
 import './index.scss'
 import ShopAppComponent from "./ShopAppComponent";
+import CloseIcon from '@mui/icons-material/Close';
 
-const RegisterComponent = ({ setComponent }) => {
+const RegisterComponent = ({ setComponent, handleClose }) => {
     const handleLogin = () => {
         setComponent('login')
     }
@@ -14,21 +15,29 @@ const RegisterComponent = ({ setComponent }) => {
                     <ShopAppComponent />
                 </div>
                 <div className="modal-left-side">
-                    <div className="title-auth-component">
-                        Welcome to Shop App
+                    <div className="close-btn">
+                        <IconButton onClick={handleClose}>
+                            <CloseIcon />
+                        </IconButton>
                     </div>
-                    <div>
-                        <form>
-                            <TextField placeholder="User Name" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }} required />
-                            <TextField placeholder="Email@gmail.com" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }} required />
-                            <TextField placeholder="Password" type={'password'} fullWidth variant="standard" style={{ margin: '10px 0px' }} required />
-                            <TextField placeholder="Confirm Password" type={'password'} fullWidth variant="standard" style={{ margin: '10px 0px' }} required />
-                            <Button type="primary" style={{ backgroundColor: '#FFD333', fontWeight: '700', color: '#000000' }} fullWidth>Register</Button>
-                        </form>
+                    <div style={{padding : '40px'}}>
+                        <div className="title-auth-component">
+                            Welcome to Shop App
+                        </div>
+                        <div>
+                            <form>
+                                <TextField placeholder="User Name" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }}/>
+                                <TextField placeholder="Email@gmail.com" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }}/>
+                                <TextField placeholder="Password" type={'password'} fullWidth variant="standard" style={{ margin: '10px 0px' }} />
+                                <TextField placeholder="Confirm Password" type={'password'} fullWidth variant="standard" style={{ margin: '10px 0px' }}/>
+                                <Button type="primary" style={{ backgroundColor: '#FFD333', fontWeight: '700', color: '#000000' }} fullWidth>Register</Button>
+                            </form>
+                        </div>
+                        <div className="footer" onClick={handleLogin}>
+                            Login
+                        </div>
                     </div>
-                    <div className="footer" onClick={handleLogin}>
-                        Login
-                    </div>
+
                 </div>
 
             </div>
