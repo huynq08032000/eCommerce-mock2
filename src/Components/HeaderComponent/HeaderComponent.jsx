@@ -1,5 +1,6 @@
 import React from "react";
 import "../HeaderComponent/css/index.scss"
+import IconButton from '@mui/material/IconButton';
 import SearchComponent from '../HeaderComponent/ChildComponent/SearchComponent/SearchComponent'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
@@ -44,13 +45,11 @@ const HeaderComponent = () => {
                         <SearchComponent />
                     </div>
                     <div className="right-side">
-                        <div className="child-items"><ShoppingCartOutlinedIcon style={{ margin: '0 5px' }} /></div>
-                        <div className="child-items"><PersonOutlineOutlinedIcon style={{ margin: '0 5px' }} /></div>
+                        <div className="child-items"><IconButton><ShoppingCartOutlinedIcon style={{ margin: '0 5px' }} /></IconButton></div>
+                        <div className="child-items"><IconButton><PersonOutlineOutlinedIcon style={{ margin: '0 5px' }} /></IconButton></div>
                     </div>
                 </div>
             </div>
-
-
         </>
     )
 }
