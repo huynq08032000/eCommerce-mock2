@@ -21,7 +21,7 @@ const LastestProductComponent = () => {
     }, [])
     return (
         <>
-            <Title label={'Lastest Products'} />
+            <Title label={'Bestsellers'} />
             {isLastestLoading ? <>Loading...</> : <Grid container spacing={2} columns={16}>
                 {lastestProducts.map(el => {
                     return <Grid item sm={8} lg={4} key={el.id} align='center'>

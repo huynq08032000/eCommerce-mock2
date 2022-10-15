@@ -28,10 +28,9 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-                <BenefitComponent/>
-                {/* <CarouselComponent />
-                <LastestProductComponent/>
-                <FooterComponent label={'Developed by HuyNQ129'}/> */}
+                <BenefitComponent />
+                <LastestProductComponent />
+                <FooterComponent label={'Developed by HuyNQ129'} />
             </div>
 
         </>
