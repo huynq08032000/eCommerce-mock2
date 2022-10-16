@@ -1,20 +1,21 @@
 import { Button, IconButton, Link, TextField, Typography } from "@mui/material";
-import React from "react";
+import React, { useState } from "react";
 import './index.scss'
 import ShopAppComponent from "./ShopAppComponent";
 import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from "formik";
 import * as yup from "yup";
 import { regexEmail } from "../../ultis/ultis";
+import { LoadingButton } from "@mui/lab";
 
 const validationSchema = yup.object({
     email: yup
         .string("Enter your email")
         .matches(regexEmail, "Invalid Email")
         .required("Email is required"),
-    code: yup
-        .string("Enter code")
-        .required("Code is required"),
+    // code: yup
+    //     .string("Enter code")
+    //     .required("Code is required"),
 });
 
 const ForgotComponent = ({ setComponent, handleClose }) => {
@@ -24,11 +25,11 @@ const ForgotComponent = ({ setComponent, handleClose }) => {
     const handleSendCode = () => {
         console.log('send code')
     }
-
+    const [loading, setLoading] = useState(false)
     const formik = useFormik({
         initialValues: {
             email: "",
-            code: '',
+            // code: '',
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
@@ -51,13 +52,14 @@ const ForgotComponent = ({ setComponent, handleClose }) => {
                     <div>
                         <form onSubmit={formik.handleSubmit}>
                             <TextField name='email' className={'input-forgot'} placeholder="Email@gmail.com" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }}
-                                InputProps={{
-                                    endAdornment: <><Link onClick={handleSendCode} style={{ fontSize: '12px' }}>Send Code</Link></>,
-                                }} onChange={myHandleChange} />
+                                // InputProps={{
+                                //     endAdornment: <><Link onClick={handleSendCode} style={{ fontSize: '12px' }}>Send Code</Link></>,
+                                // }}
+                                onChange={myHandleChange} />
                             {formik.errors.email && <Typography style={{ color: 'red' }}>{formik.errors.email}</Typography>}
-                            <TextField name='code' placeholder="Code" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }} onChange={myHandleChange} />
-                            {formik.errors.code && <Typography style={{ color: 'red' }}>{formik.errors.code}</Typography>}
-                            <Button type="primary" style={{ backgroundColor: '#FFD333', fontWeight: '700', color: '#000000' }} fullWidth>Recovery Password</Button>
+                            {/* <TextField name='code' placeholder="Code" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }} onChange={myHandleChange} />
+                            {formik.errors.code && <Typography style={{ color: 'red' }}>{formik.errors.code}</Typography>} */}
+                            <LoadingButton type="primary" style={{ backgroundColor: '#FFD333', fontWeight: '700', color: '#000000' }} fullWidth loading={loading} loadingPosition='start'>Recovery Password</LoadingButton>
                         </form>
                     </div>
                     <div className="footer" onClick={handleLogin}>
