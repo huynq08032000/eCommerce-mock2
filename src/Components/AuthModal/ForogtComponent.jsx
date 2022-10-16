@@ -7,6 +7,9 @@ import { useFormik } from "formik";
 import * as yup from "yup";
 import { regexEmail } from "../../ultis/ultis";
 import { LoadingButton } from "@mui/lab";
+import axios from "axios";
+import { apiForgot } from "../../config/api";
+import { Alert } from "antd";
 
 const validationSchema = yup.object({
     email: yup
@@ -26,6 +29,7 @@ const ForgotComponent = ({ setComponent, handleClose }) => {
         console.log('send code')
     }
     const [loading, setLoading] = useState(false)
+    const [message, setMessage] = useState({ type: '', message: '' })
     const formik = useFormik({
         initialValues: {
             email: "",
@@ -39,18 +43,33 @@ const ForgotComponent = ({ setComponent, handleClose }) => {
     const myHandleChange = (event) => {
         formik.handleChange(event);
     };
-    const handleForgot = (values) => {
-        console.log(values)
+    const handleForgot = async (values) => {
+        setLoading(true)
+        try {
+            const res = await axios.post(apiForgot, values)
+            setMessage({ ...message, type: 'success', message: res.data.message })
+        } catch (error) {
+            setMessage({ ...message, type: 'error', message: error.response.data.message })
+        }
+        setLoading(false)
     }
     return (
         <>
             <div className="modal-container">
                 <div className="modal-right-side">
                     <div className="title-auth-component">
-                        Welcome to Shop App
+                        Forgot Password?
                     </div>
                     <div>
-                        <form onSubmit={formik.handleSubmit}>
+                        Please enter your email to recover your password
+                    </div>
+                    {message.message !== '' && <Alert
+                        description={message.message}
+                        type={message.type}
+                        showIcon
+                    />}
+                    <div>
+                        <form onSubmit={formik.handleSubmit} style={{marginTop : '20px'}}>
                             <TextField name='email' className={'input-forgot'} placeholder="Email@gmail.com" type={'text'} fullWidth variant="standard" style={{ margin: '10px 0px' }}
                                 // InputProps={{
                                 //     endAdornment: <><Link onClick={handleSendCode} style={{ fontSize: '12px' }}>Send Code</Link></>,

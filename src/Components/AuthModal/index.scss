@@ -34,10 +34,12 @@
     color: #000000 !important;
     text-decoration: none !important;
 }
-
+form {
+    margin-top: 20px;
+}
 .input-forgot {
     input {
-        width: 80%;
+        width: 100%;
     }
 }
 
@@ -48,6 +50,7 @@
 
     &:hover {
         cursor: pointer;
+        text-decoration: underline;
     }
 }
 
