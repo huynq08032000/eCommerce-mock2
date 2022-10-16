@@ -3,7 +3,8 @@ import axios from "axios"
 
 const initState = {
     user : {},
-    deviceId : ''
+    deviceId : '',
+    cart : [],
 }
 
 const UserSlice = createSlice({

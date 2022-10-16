@@ -1,3 +1,7 @@
+export const acess_token = 'acess_token'
+export const refresh_token = 'refresh_token'
+
+
 export const modifyLetter = (str) => {
     const tmpString = str.toLowerCase()
     return tmpString.charAt(0).toUpperCase() + tmpString.slice(1);
@@ -37,3 +41,10 @@ export const b64DecodeUnicode = (str) =>
             .join("")
 
     );
+
+export const setLocalStorageKey = (key, value) => {
+    localStorage.setItem(key, b64EncodeUnicode(value) )
+}
+export const getLocalStrogageByKey = (key) => {
+    return b64DecodeUnicode(localStorage.getItem(key))
+}

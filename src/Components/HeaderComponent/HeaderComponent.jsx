@@ -6,7 +6,7 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AuthModal from "../AuthModal/AuthModal";
 import { useSelector } from "react-redux";
-import { Avatar, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
+import { Avatar, Badge, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import { modifyLetter } from "../../ultis/ultis";
 
 const HeaderComponent = () => {
@@ -25,7 +25,7 @@ const HeaderComponent = () => {
         }
     ]
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-    const { user } = useSelector(state => state.user)
+    const { user, cart } = useSelector(state => state.user)
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -63,7 +63,7 @@ const HeaderComponent = () => {
                         <SearchComponent />
                     </div>
                     <div className="right-side">
-                        <div className="child-items"><IconButton><ShoppingCartOutlinedIcon style={{ margin: '0 5px' }} /></IconButton></div>
+                        <div className="child-items"><IconButton><Badge style={{fontWeight: '500' }} badgeContent={cart.length}><ShoppingCartOutlinedIcon/></Badge></IconButton></div>
                         <div className="child-items">
                             {user.id ? <><Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
