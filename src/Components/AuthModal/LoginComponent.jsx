@@ -10,6 +10,8 @@ import { LoadingButton } from "@mui/lab";
 import axios from "axios";
 import { apiLogin } from "../../config/api";
 import { Alert } from "antd";
+import { useDispatch } from "react-redux";
+import { setDeviceId, setUser } from "../../redux/UserSlice";
 
 const validationSchema = yup.object({
     email: yup
@@ -23,6 +25,7 @@ const validationSchema = yup.object({
 });
 
 const LoginComponent = ({ setComponent, handleClose }) => {
+    const dispatch = useDispatch()
     const handleForgot = () => {
         setComponent('forgot')
     }
@@ -51,7 +54,9 @@ const LoginComponent = ({ setComponent, handleClose }) => {
         setLoading(true)
         try {
             const res = await axios.post(apiLogin, formValues)
-            console.log(res.data.data)
+            dispatch(setUser(res.data.data.user))
+            dispatch(setDeviceId(res.data.data.deviceId))
+            handleClose()
         } catch (error) {
             console.log(error.response.data.message)
             setMessage({ ...message, type: 'error', message: error.response.data.message })
