@@ -8,6 +8,7 @@ import AuthModal from "../AuthModal/AuthModal";
 import { useSelector } from "react-redux";
 import { Avatar, Badge, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import { modifyLetter } from "../../ultis/ultis";
+import { useNavigate } from "react-router-dom";
 
 const HeaderComponent = () => {
     const arrHeader = [
@@ -38,6 +39,7 @@ const HeaderComponent = () => {
         setAnchorElUser(null);
     };
     console.log(user)
+    const navigate = useNavigate()
     return (
         <>
             <div style={{ backgroundColor: '#F0E9E9' }}>
@@ -57,7 +59,7 @@ const HeaderComponent = () => {
             <div className="container">
                 <div className="header-container" >
                     <div className="left-side">
-                        <div className="title">Shop app</div>
+                        <div className="title" onClick={()=>navigate('/')}>Shop app</div>
                     </div>
                     <div className="middle-side">
                         <SearchComponent />

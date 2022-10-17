@@ -6,3 +6,5 @@ export const getAllCategories = `${urlApi}/v1/products/get-all-categories`
 export const apiLogin = `${urlApi}/v1/auth/login`
 export const apiRegister = `${urlApi}/v1/auth/register`
 export const apiForgot = `${urlApi}/v1/auth/forgot-password`
+
+export const apiGetProductById =`${urlApi}/v1/products/`

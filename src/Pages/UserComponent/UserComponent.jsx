@@ -9,7 +9,7 @@ const UserComponent = ({component}) => {
             <HeaderComponent/>
             <div className="main-container">
                 {component}
-                <FooterComponent/>
+                <FooterComponent label={'Developed by HuyNQ129'}/>
             </div>
         </>
     )
