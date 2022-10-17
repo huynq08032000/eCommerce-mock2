@@ -11,8 +11,10 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import "./css/index.scss"
 import 'antd/dist/antd.css';
+import { Link, useNavigate } from "react-router-dom";
 
 const LastestProductComponent = () => {
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const { isLastestLoading, lastestProducts, category } = useSelector(state => state.products)
     useEffect(() => {
@@ -24,6 +26,10 @@ const LastestProductComponent = () => {
         if (category !== '') searchParm.category = category
         dispatch(fetchLastestProduct(searchParm))
     }, [category])
+    const handleOnClickLink = (id) => {
+        console.log(id)
+        // navigate(`/productDetail/${id}`)
+    }
     return (
         <>
             <Title label={'Bestsellers'} />
@@ -39,8 +45,8 @@ const LastestProductComponent = () => {
                                     image={el.images[0] ? el.images[0].url : ''}
                                 />
                                 <CardContent style={{ padding: '5px 0' }}>
-                                    <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={'20px'} fontWeight={'700'}>
-                                        {el.name}
+                                    <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={'20px'} fontWeight={'700'} >
+                                        <Link to={`/productDetail/${el.id}`} target='_blank' style={{color : '#000000'}}>{el.name}</Link>
                                     </Typography>
                                     <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name'>
                                         {el.id}
