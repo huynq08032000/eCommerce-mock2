@@ -12,26 +12,10 @@ const ProductInfo = () => {
         setQuantity(prev => prev + 1)
     }
     const handleDecrease = () => {
+        if(quantity === 1) return;
         setQuantity(prev => prev - 1)
     }
-    useLayoutEffect(() => {
-        if (quantity < 1) {
-            setQuantity(1)
-        }
-        if (quantity > product.countInStock) {
-            toast.warning(`We only have ${product.countInStock} in Stock!`, {
-                position: "top-right",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "light",
-            })
-            setQuantity(prev => product.countInStock)
-        }
-    }, [quantity])
+
     return (
         <>
             <div className="product-info-first">

@@ -1,21 +1,23 @@
 import { Pagination, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useParams } from "react-router-dom";
 import { fetchReviews } from "../../redux/ProductDetailSlice";
 import './css/index.scss'
 import ReviewItem from "./ReviewItem";
 const CustomerReviewsComponent = () => {
-    const { product, reviews, isReviewsLoading } = useSelector(state => state.productDetail)
+    const { reviews, isReviewsLoading, idAddReview } = useSelector(state => state.productDetail)
     const dispatch = useDispatch()
+    const { id } = useParams()
     const [currentPage, setCurrentPage] = useState(1)
     useEffect(() => {
         const data = {
-            id: product.id,
+            id: id,
             size: 3,
             page: currentPage
         }
         dispatch(fetchReviews(data))
-    }, [currentPage])
+    }, [currentPage, idAddReview])
     return (
         <>
             <Typography fontWeight={700} fontSize={'28px'} lineHeight={'33px'}>Customer Reviews</Typography>

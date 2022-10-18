@@ -16,6 +16,10 @@ const UserSlice = createSlice({
         },
         setDeviceId : (state, action) => {
             state.deviceId = action.payload
+        },
+        clearUser: (state,action) => {
+            state.user = {}
+            state.deviceId = ''
         }
     },
     extraReducers: (builder) => {

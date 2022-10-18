@@ -5,7 +5,7 @@ import ShopAppComponent from "./ShopAppComponent";
 import CloseIcon from '@mui/icons-material/Close';
 import { useFormik } from "formik";
 import * as yup from "yup";
-import { regexEmail } from "../../ultis/ultis";
+import { access_token, access_token_time, deviceId, refresh_token, refresh_token_time, regexEmail, setLocalStorageKey } from "../../ultis/ultis";
 import { LoadingButton } from "@mui/lab";
 import axios from "axios";
 import { apiLogin } from "../../config/api";
@@ -56,6 +56,11 @@ const LoginComponent = ({ setComponent, handleClose }) => {
             const res = await axios.post(apiLogin, formValues)
             dispatch(setUser(res.data.data.user))
             dispatch(setDeviceId(res.data.data.deviceId))
+            setLocalStorageKey(access_token, res.data.data.tokens.access.token)
+            setLocalStorageKey(access_token_time, res.data.data.tokens.access.expires)
+            setLocalStorageKey(refresh_token, res.data.data.tokens.refresh.token)
+            setLocalStorageKey(refresh_token_time, res.data.data.tokens.refresh.expires)
+            setLocalStorageKey(deviceId, res.data.data.deviceId)
             handleClose()
         } catch (error) {
             console.log(error.response.data.message)

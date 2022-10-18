@@ -1,7 +1,9 @@
 const moment = require('moment')
-export const acess_token = 'acess_token'
+export const access_token = 'access_token'
 export const refresh_token = 'refresh_token'
-
+export const access_token_time = 'access_token_time'
+export const refresh_token_time = 'refresh_token_time'
+export const deviceId = 'deviceId'
 
 export const modifyLetter = (str) => {
     const tmpString = str.toLowerCase()
@@ -9,17 +11,17 @@ export const modifyLetter = (str) => {
 }
 
 export const regexEmail = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-export const b64EncodeUnicode = (str) =>
+export const b64EncodeUnicode = (str) => window.btoa(str)
 
-    window.btoa(
+// window.btoa(
 
-        encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) =>
+//     encodeURIComponent(str).replace(/%([0-9A-F]{2})/g, (match, p1) =>
 
-            String.fromCharCode(parseInt(p1, 16))
+//         String.fromCharCode(parseInt(p1, 16))
 
-        )
+//     )
 
-    );
+// );
 export const modifyTime = (string) => {
     return moment(string).format('DD MMM, YYYY')
 }
@@ -27,27 +29,34 @@ export const modifyTime = (string) => {
 
 // Decoding base64 ⇢ UTF8
 
-export const b64DecodeUnicode = (str) =>
+export const b64DecodeUnicode = (str) => window.atob(str)
 
-    decodeURIComponent(
+// decodeURIComponent(
 
-        Array.prototype.map
+//     Array.prototype.map
 
-            .call(
+//         .call(
 
-                window.atob(str),
+//             window.atob(str),
 
-                (c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`
+//             (c) => `%${`00${c.charCodeAt(0).toString(16)}`.slice(-2)}`
 
-            )
+//         )
 
-            .join("")
+//         .join("")
 
-    );
+// );
 
 export const setLocalStorageKey = (key, value) => {
     localStorage.setItem(key, b64EncodeUnicode(value))
 }
 export const getLocalStrogageByKey = (key) => {
+    if (localStorage.getItem(key) === undefined) return ''
     return b64DecodeUnicode(localStorage.getItem(key))
+}
+
+export const isExpried = (time) => {
+    const current = moment()
+    const timeExpried = moment(time)
+    return timeExpried.isAfter(current)
 }
