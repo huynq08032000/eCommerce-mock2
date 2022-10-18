@@ -1,34 +1,24 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import CustomSeparator from "../../Components/BreadCrumbsComponent/CustomSeparator";
+import ProductInfoComponent from "../../Components/ProductInfoComponent/ProductInfoComponent";
 import { apiGetProductById } from "../../config/api";
+import { fetchProductById } from "../../redux/ProductDetailSlice";
 
 const ProductDetailComponent = () => {
+    const dispatch = useDispatch()
     const { id } = useParams()
-    const [loading, setLoading] = useState(false);
-    const [product, setProduct] = useState({})
-    const [breadcumsTmp, setBreadcumsTmp] = useState([])
-    const fetchProduct = async (id) => {
-        setLoading(true)
-        try {
-            const res = await axios.get(apiGetProductById + id)
-            const data = res.data.data
-            console.log(data)
-            setBreadcumsTmp(...breadcumsTmp,[{ label: data.product.category, href: '/' }, { label: data.product.name }])
-        } catch (error) {
-            console.log(error)
-        }
-        setLoading(false)
-    }
+    const { isLoading, breadcums } = useSelector(state => state.productDetail)
     useEffect(() => {
-        fetchProduct(id)
+        dispatch(fetchProductById(id))
     }, [id])
     return (
         <>
-            {loading ? <>Loading...</> : <>
-                ProductDetailComponent
-                <CustomSeparator breadcumsTmp={breadcumsTmp} />
+            {isLoading ? <>Loading...</> : <>
+                <CustomSeparator breadcums={breadcums} />
+                <ProductInfoComponent />
             </>}
 
         </>

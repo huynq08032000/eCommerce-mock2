@@ -5,19 +5,21 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
-const CustomSeparator = ({ breadcumsTmp }) => {
+const CustomSeparator = ({ breadcums }) => {
+
     const handleClick = (event) => {
         console.info('You clicked a breadcrumb.');
     }
-    const renderBreadcumbs = (breadcumsTmp2) => {
-        const arr = [{ label: 'Home', href: '/' }].concat(breadcumsTmp2)
+
+    const renderBreadcumbs = () => {
+        const arr = [{ label: 'Home', href: '/' }].concat(breadcums)
         return arr.map((el, index) => {
             if (el.href !== undefined) {
-                return <Link underline="hover" key={index} color="inherit" href={el.href} onClick={handleClick} style={{fontWeight : '700', fontSize : '16px'}}>
+                return <Link underline="hover" key={index} color="inherit" href={el.href} onClick={handleClick} style={{ fontWeight: '700', fontSize: '16px' }}>
                     {el.label}
                 </Link>
             } else {
-                return <Typography key={index} color="text.primary" style={{fontWeight : '700', fontSize : '16px'}}>
+                return <Typography key={index} color="text.primary" style={{ fontWeight: '700', fontSize: '16px' }}>
                     {el.label}
                 </Typography>
             }
@@ -30,7 +32,7 @@ const CustomSeparator = ({ breadcumsTmp }) => {
                 separator={<NavigateNextIcon fontSize="small" />}
                 aria-label="breadcrumb"
             >
-                {renderBreadcumbs(breadcumsTmp)}
+                {renderBreadcumbs()}
             </Breadcrumbs>
         </Stack>
     );
