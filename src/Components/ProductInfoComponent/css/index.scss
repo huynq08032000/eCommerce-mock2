@@ -82,3 +82,17 @@
 .ant-tabs-ink-bar {
     background: #FFD333 !important;
 }
+.review-content-container{
+    padding: 20px 10px;
+}
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+    background-color: #E5E5E5 !important;
+    &.Mui-selected {
+        background-color: #FFD333 !important;
+    }
+
+    &.Mui-disabled {
+        color: #FFD333;
+        background-color: #919EAB;
+    }
+}

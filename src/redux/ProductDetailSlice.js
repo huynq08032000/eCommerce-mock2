@@ -4,6 +4,7 @@ import { apiGetProductById } from "../config/api"
 
 const initState = {
     isLoading: false,
+    isPostReview : false,
     product: {},
     reviews: {},
     breadcums: []

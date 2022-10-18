@@ -1,3 +1,4 @@
+const moment = require('moment')
 export const acess_token = 'acess_token'
 export const refresh_token = 'refresh_token'
 
@@ -19,7 +20,9 @@ export const b64EncodeUnicode = (str) =>
         )
 
     );
-
+export const modifyTime = (string) => {
+    return moment(string).format('DD MMM, YYYY')
+}
 
 
 // Decoding base64 ⇢ UTF8
@@ -43,7 +46,7 @@ export const b64DecodeUnicode = (str) =>
     );
 
 export const setLocalStorageKey = (key, value) => {
-    localStorage.setItem(key, b64EncodeUnicode(value) )
+    localStorage.setItem(key, b64EncodeUnicode(value))
 }
 export const getLocalStrogageByKey = (key) => {
     return b64DecodeUnicode(localStorage.getItem(key))

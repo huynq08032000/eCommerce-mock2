@@ -5,7 +5,6 @@ import './css/index.scss'
 const ProductImage = () => {
     const { product } = useSelector(state => state.productDetail)
     const [mainImage, setMainImage] = useState(product.images?.[0])
-    console.log(mainImage)
     return (
         <>
             <div className="main-image">
