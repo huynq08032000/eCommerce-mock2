@@ -2,6 +2,7 @@ import React from "react";
 import ProductImage from "./ProductImage";
 import './css/index.scss'
 import ProductInfo from "./ProductInfo";
+import ProductTabComponent from "./ProductTabComponent";
 const ProductInfoComponent = () => {   
 
     return (
@@ -14,7 +15,9 @@ const ProductInfoComponent = () => {
                     <ProductInfo/>
                 </div>
             </div>
-
+            <div className="product-tab-component">
+                <ProductTabComponent/>
+            </div>
         </>
     )
 }
