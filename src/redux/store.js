@@ -4,8 +4,8 @@ import ProductDetailSlice from "./ProductDetailSlice";
 import ProductsSlice from "./ProductsSlice";
 import UserSlice from "./UserSlice";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
-import createTransform from "redux-persist/lib/createTransform";
 import { persistReducer } from 'redux-persist';
+import createTransform from "redux-persist/es/createTransform";
 
 const reducers = combineReducers({
     products: ProductsSlice,
