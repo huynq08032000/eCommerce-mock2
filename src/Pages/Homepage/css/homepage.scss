@@ -4,14 +4,15 @@
 }
 .left-side-home {
     background-color: #3D464D;
-    width: 25%;
-    height: 100%;
+    width: 360px;
+    height: 628px;
     margin-right: 5px;
     // padding: 10px;
     color: #fff;
 }
 .right-side-home{
-    width: 75%;
+    width: 80%;
+    height: 628px;
 }
 
 .child-carousel-footer {
@@ -24,4 +25,7 @@
     max-width: 33%;
     margin: 0 5px;
     margin-left: 0px;
+    &:last-child {
+        margin-right: 0px;
+    }
 }

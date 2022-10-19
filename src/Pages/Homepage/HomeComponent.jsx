@@ -19,9 +19,9 @@ const HomeComponent = () => {
                         <CarouselComponent />
                     </div>
                     <div className="child-carousel-footer">
-                        <div className="child-carouse-footer-items"><CarouselComponent /></div>
-                        <div className="child-carouse-footer-items"><CarouselComponent /></div>
-                        <div className="child-carouse-footer-items"><CarouselComponent /></div>
+                        <div className="child-carouse-footer-items"><CarouselComponent style={{ minHeight: '280px' }} /></div>
+                        <div className="child-carouse-footer-items"><CarouselComponent style={{ minHeight: '280px' }} /></div>
+                        <div className="child-carouse-footer-items"><CarouselComponent style={{ minHeight: '280px' }} /></div>
                     </div>
                 </div>
             </div>

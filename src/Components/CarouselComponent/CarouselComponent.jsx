@@ -5,7 +5,7 @@ import styles from "react-responsive-carousel/lib/styles/carousel.min.css";
 import { fetchProductCarousel } from "../../redux/ProductsSlice";
 import '../CarouselComponent/css/index.scss'
 
-const CarouselComponent = () => {
+const CarouselComponent = ({style}) => {
     const dispatch = useDispatch()
     const { isLoading, carouselProducts } = useSelector(state => state.products)
 
@@ -21,7 +21,7 @@ const CarouselComponent = () => {
             {
                 isLoading ? <>Loading....</> : <Carousel showThumbs={false} infiniteLoop={true}>
                     {carouselProducts.map(el => {
-                        return <div className="carousel-items" key={el.id}>
+                        return <div className="carousel-items" key={el.id} style={style}>
                             <div className="title">
                                 {el.name} (${el.price})
                             </div>

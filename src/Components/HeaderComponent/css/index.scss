@@ -22,7 +22,8 @@
 .header-container {
     margin: 0 auto;
     max-width: 100%;
-    width: 1540px;
+    width: 1440px;
+    // height: 124px;
     display: flex;
     justify-content: space-between;
     padding: 20px 20px;
@@ -31,31 +32,33 @@
 }
 
 .header-container .left-side {
-    display: flex;
-    width: 15%;
-    justify-content: space-around;
+    // display: flex;
+    width: 200px;
+    // justify-content: space-around;
 }
 
 .header-container .left-side .title {
     color: #fff;
     text-transform: uppercase;
     font-weight: 700;
-    padding: 0 10px;
+    // padding: 0 10px;
     color: #000000;
     font-size: 20px;
 }
 
 .header-container .middle-side {
-    width: 50%;
+    width: 748px;
 }
 
 .header-container .right-side {
     display: flex;
+    justify-content: space-between;
     width: 10%;
 }
 
 .header-container .right-side .child-items {
-    margin: 0 10px;
+    // margin: 0 10px;
+    // margin-right: 20px;
     text-transform: uppercase;
     color: #000000;
     font-weight: 500;
