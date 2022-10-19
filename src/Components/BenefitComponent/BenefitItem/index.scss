@@ -3,7 +3,7 @@
     background-color: #F8F8F8;
     border: 1px solid #DFD8D8;
     border-radius: 5px;
-    width: 360px;
+    width: 350px;
     margin: 5px;
 
     &:first-child {
@@ -28,8 +28,13 @@
         margin-left: 20px;
 
         .benefit-title {
-            font-weight: 600;
-            font-size: 20px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+        
+        .benefit-desc{
+            font-size: 14px;
+            line-height: 16.1px;
         }
     }
 }

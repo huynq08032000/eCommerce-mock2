@@ -4,22 +4,34 @@
     min-height: 600px;
 
     .product-image {
-        width: 30%;
+        width: 33%;
 
         .child-image {
             padding-bottom: 5px;
-            overflow-x: scroll;
+            // overflow-x: scroll;
             display: flex;
+
+            .child-item-image {
+                margin-right: 10px;
+
+                &:last-child {
+                    margin: 0;
+                }
+            }
         }
     }
 
     .product-info {
-        width: 70%;
+        width: 66%;
         padding: 20px;
 
         .product-info-first {
             border-bottom: 1px solid #737070;
             padding-bottom: 10px;
+
+            .product-description {
+                height: 74px;
+            }
         }
 
         .product-info-seccond {
@@ -36,21 +48,14 @@
     margin-bottom: 10px;
 }
 
-.child-item-image {
-    width: 25%;
-    margin-right: 10px;
 
-    &:last-child {
-        margin: 0;
-    }
-}
 
 .product-rating {
     display: flex;
-    padding: 15px;
+    padding: 15px 0px;
 
     .product-rating-child {
-        padding: 0 5px;
+        padding: 0 10px;
         border-right: 1px solid #565353;
 
         &:last-child {
@@ -82,12 +87,15 @@
 .ant-tabs-ink-bar {
     background: #FFD333 !important;
 }
-.review-content-container{
+
+.review-content-container {
     padding: 20px 10px;
     // min-height: 400px;
 }
+
 .css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
     background-color: #E5E5E5 !important;
+
     &.Mui-selected {
         background-color: #FFD333 !important;
     }

@@ -59,13 +59,13 @@ const HeaderComponent = () => {
             <div className="container">
                 <div className="header-container" >
                     <div className="left-side">
-                        <div className="title" onClick={()=>navigate('/')}>Shop app</div>
+                        <div className="title" onClick={() => navigate('/')}>Shop App</div>
                     </div>
                     <div className="middle-side">
                         <SearchComponent />
                     </div>
                     <div className="right-side">
-                        <div className="child-items"><IconButton><Badge style={{fontWeight: '500' }} badgeContent={cart.length}><ShoppingCartOutlinedIcon/></Badge></IconButton></div>
+                        <div className="child-items"><IconButton><Badge style={{ fontWeight: '500' }} badgeContent={cart.length}><ShoppingCartOutlinedIcon /></Badge></IconButton></div>
                         <div className="child-items">
                             {user.id ? <><Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>

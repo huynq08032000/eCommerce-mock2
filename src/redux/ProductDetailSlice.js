@@ -38,6 +38,7 @@ const ProductDetailSlice = createSlice({
             .addCase(fetchReviews.fulfilled, (state, action) => {
                 state.isReviewLoading = false
                 state.idAddReview = false
+                state.product = action.payload.product
                 state.reviews = action.payload.reviews
             })
             .addCase(addReviews.pending, (state, action) => {

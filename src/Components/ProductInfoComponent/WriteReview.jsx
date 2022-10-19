@@ -4,7 +4,6 @@ import { Alert } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addReviews } from "../../redux/ProductDetailSlice";
-import { access_token, access_token_time, deviceId, getLocalStrogageByKey } from "../../ultis/ultis";
 
 const WriteReview = () => {
     const dispatch = useDispatch()
