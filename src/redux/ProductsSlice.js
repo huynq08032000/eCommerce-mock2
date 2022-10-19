@@ -7,14 +7,18 @@ const initState = {
     isLastestLoading : false,
     carouselProducts: [],
     lastestProducts: [],
+    category : '',
 }
 
 const ProductsSlice = createSlice({
     name: 'ProductsSlice',
     initialState: initState,
     reducers: {
-        setCarouseProduct: (state, payload) => {
-            state.carouselProduct = payload
+        setCarouseProduct: (state, action) => {
+            state.carouselProduct = action.payload
+        },
+        setCategory : (state, action) => {
+            state.category = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -67,5 +71,5 @@ export const fetchLastestProduct = createAsyncThunk('products/fetchLastestProduc
         console.log(err)
     }
 })
-export const { setCarouseProduct } = ProductsSlice.actions;
+export const { setCarouseProduct, setCategory } = ProductsSlice.actions;
 export default ProductsSlice.reducer;

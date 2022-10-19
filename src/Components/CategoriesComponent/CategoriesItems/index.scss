@@ -1,12 +1,26 @@
 .cate-item {
     display: flex;
-    padding: 10px;
+    width: 100%;
+    height: 52px;
+    padding: 16px;
+    &:hover {
+        background-color: #B59628;
+        cursor: pointer;
+    }
 }
 
 .cate-item-name {
+    font-weight: 700;
     width: 90%;
-    font-size: 15px;
+    font-size: 22px;
+    line-height: 25.3px;
 }
-.cate-item-arrow{
-    width: 10%;
+
+.cate-item-arrow {
+    width: 8.03px;
+    height: 20px;
+}
+
+.active {
+    background-color: #B59628;
 }
