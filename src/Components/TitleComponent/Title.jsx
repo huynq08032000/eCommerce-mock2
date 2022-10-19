@@ -3,13 +3,12 @@ import styled from "styled-components";
 import './index.scss'
 
 const TitleComponent = styled.h2`
-    font-size : 20px;
-    text-transform : uppercase;
+    font-size : 22px;
     color : #000000;
-    letter-spacing : 3px;
-    padding : 10px;
+    padding : 10px 25px;
     display : flex;
     justify-content : space-between;
+    font-weight : 700;
 `
 
 const Title = ({ label, href }) => {

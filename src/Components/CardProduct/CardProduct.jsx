@@ -13,18 +13,18 @@ import { Link } from "react-router-dom";
 const CardProduct = ({ product }) => {
     return (
         <>
-            <Card sx={{ maxWidth: 300, padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight : '20px' }}>
+            <Card sx={{ width: 350, height : '400px', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight : '20px' }}>
                 <CardMedia
                     component="img"
-                    height="194"
+                    height="200"
                     image={product.images[0] ? product.images[0].url : ''}
                 />
                 <CardContent style={{ padding: '5px 0' }}>
-                    <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={'20px'} fontWeight={'700'} >
+                    <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={'32px'} fontWeight={'700'} >
                         <Link to={`/productDetail/${product.id}/${product.category}`} style={{ color: '#000000' }}>{product.name}</Link>
                     </Typography>
-                    <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name'>
-                        {product.id}
+                    <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={18} fontWeight={700}>
+                        ID: {product.id}
                     </Typography>
                     <div style={{ display: 'flex', overflowWrap: 'break-word' }}>
                         <Rating name="read-only" value={parseFloat(product.rating)} readOnly />
@@ -32,7 +32,7 @@ const CardProduct = ({ product }) => {
                             {product.numOfReviews} reviewers
                         </div>
                     </div>
-                    <Typography style={{ fontSize: '20px', fontWeight: '700', letterSpacing: '1px' }} color="text.secondary" textAlign={'left'}>
+                    <Typography style={{ fontSize: '24px', fontWeight: '700', letterSpacing: '1px' }} color="text.secondary" textAlign={'left'}>
                         ${product.price}
                     </Typography>
                     {
