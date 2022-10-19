@@ -11,6 +11,11 @@ import 'antd/dist/antd.css';
 import { Link } from "react-router-dom";
 
 const CardProduct = ({ product }) => {
+    const handleAddCart = (obj) => {
+        const tmpObj = { ...obj }
+        tmpObj.quantity = 1
+        console.log(tmpObj)
+    }
     return (
         <>
             <Card sx={{ width: 350, height: '420px', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight: '20px' }}>
@@ -45,7 +50,7 @@ const CardProduct = ({ product }) => {
                                 </Tag>
                             </div>
                             <div>
-                                <IconButton color="primary" aria-labproduct="add to shopping cart" onClick={() => console.log(product.id)}>
+                                <IconButton color="primary" aria-labproduct="add to shopping cart" onClick={() => handleAddCart(product)}>
                                     <AddShoppingCartIcon />
                                 </IconButton>
                             </div>

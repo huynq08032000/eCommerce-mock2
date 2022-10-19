@@ -9,6 +9,7 @@ import { useSelector } from "react-redux";
 import { Avatar, Badge, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
 import { modifyLetter } from "../../ultis/ultis";
 import { useNavigate } from "react-router-dom";
+import CartMenuComponent from "../CartMenuComponent/CartMenuComponent";
 
 const HeaderComponent = () => {
     const arrHeader = [
@@ -28,15 +29,23 @@ const HeaderComponent = () => {
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const { user, cart } = useSelector(state => state.user)
     const [open, setOpen] = useState(false);
+    const [openCart, setOpenCart] = useState(false)
     const handleOpen = () => setOpen(true);
     const [anchorElUser, setAnchorElUser] = useState(null);
-
+    const [anchorElCart, setAnchorElCart] = useState(null)
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
 
     const handleCloseUserMenu = () => {
         setAnchorElUser(null);
+    };
+    const handleOpenCartMenu = (event) => {
+        setAnchorElCart(event.currentTarget);
+    };
+
+    const handleCloseCartMenu = () => {
+        setAnchorElCart(null);
     };
     console.log(user)
     const navigate = useNavigate()
@@ -65,7 +74,35 @@ const HeaderComponent = () => {
                         <SearchComponent />
                     </div>
                     <div className="right-side">
-                        <div className="child-items"><IconButton><Badge style={{ fontWeight: '500' }} badgeContent={cart.length}><ShoppingCartOutlinedIcon /></Badge></IconButton></div>
+                        <div className="child-items">
+                            <Tooltip title='Open Cart'>
+                                <IconButton onClick={handleOpenCartMenu} sx={{ p: 0 }}>
+                                    <Badge style={{ fontWeight: '500' }} badgeContent={cart.length}><ShoppingCartOutlinedIcon /></Badge>
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElCart}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElCart)}
+                                onClose={handleCloseCartMenu}
+                            >
+                                {settings.map((index) => (
+                                    <MenuItem key={index}>
+                                        <CartMenuComponent />
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </div>
                         <div className="child-items">
                             {user.id ? <><Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
