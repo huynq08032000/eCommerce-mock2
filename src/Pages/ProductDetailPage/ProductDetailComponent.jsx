@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import CustomSeparator from "../../Components/BreadCrumbsComponent/CustomSeparator";
 import ProductInfoComponent from "../../Components/ProductInfoComponent/ProductInfoComponent";
+import RelatedProductComponent from "../../Components/ProductInfoComponent/RelatedProductComponent";
 import { fetchProductById } from "../../redux/ProductDetailSlice";
 
 const ProductDetailComponent = () => {
@@ -17,6 +18,7 @@ const ProductDetailComponent = () => {
             {isLoading ? <>Loading...</> : <>
                 <CustomSeparator breadcums={breadcums} />
                 <ProductInfoComponent />
+                <RelatedProductComponent/>
             </>}
 
         </>

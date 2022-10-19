@@ -13,7 +13,7 @@ import { Link } from "react-router-dom";
 const CardProduct = ({ product }) => {
     return (
         <>
-            <Card sx={{ maxWidth: 300, padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px' }}>
+            <Card sx={{ maxWidth: 300, padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight : '20px' }}>
                 <CardMedia
                     component="img"
                     height="194"
@@ -21,7 +21,7 @@ const CardProduct = ({ product }) => {
                 />
                 <CardContent style={{ padding: '5px 0' }}>
                     <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name' fontSize={'20px'} fontWeight={'700'} >
-                        <Link to={`/productDetail/${product.id}`} style={{ color: '#000000' }}>{product.name}</Link>
+                        <Link to={`/productDetail/${product.id}/${product.category}`} style={{ color: '#000000' }}>{product.name}</Link>
                     </Typography>
                     <Typography variant="body2" color="text.secondary" textAlign={'left'} className='content-name'>
                         {product.id}

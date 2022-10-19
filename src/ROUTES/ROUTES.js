@@ -9,7 +9,7 @@ export const ROUTES = [
         component : <HomePage/>
     },
     {
-        path : '/productDetail/:id',
+        path : '/productDetail/:id/:category',
         component : <ProductDetailPage/>
     }
 ]
