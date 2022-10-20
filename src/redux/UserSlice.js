@@ -32,6 +32,18 @@ const UserSlice = createSlice({
         },
         removeCart: (state, action) => {
             state.cart = state.cart.filter(el => el.id !== action.payload.id)
+        },
+        increaseQuantity: (state, action) => {
+            const index = findIndex(state.cart, action.payload)
+            state.cart[index].quantity += 1
+        },
+        decreaseQuantity: (state, action) => {
+            if (action.payload.quantity === 1) {
+                state.cart = state.cart.filter(el => el.id !== action.payload.id)
+            } else {
+                const index = findIndex(state.cart, action.payload)
+                state.cart[index].quantity -= 1
+            }
         }
     },
     extraReducers: (builder) => {
@@ -39,5 +51,5 @@ const UserSlice = createSlice({
     }
 })
 
-export const { setUser, setDeviceId, addCart, removeCart } = UserSlice.actions;
+export const { setUser, setDeviceId, addCart, removeCart, increaseQuantity, decreaseQuantity } = UserSlice.actions;
 export default UserSlice.reducer;

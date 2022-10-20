@@ -5,7 +5,8 @@ import { countSubtotal } from "../../ultis/ultis";
 
 const style = {
     display: 'flex',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    margin: '10px 0px'
 }
 const CartProductTotal = () => {
     const { cart } = useSelector(state => state.user)
