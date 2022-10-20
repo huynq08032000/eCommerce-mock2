@@ -25,18 +25,6 @@ const CartProductTotal = () => {
                 <div><Typography fontWeight={700} fontSize={18}>Total</Typography></div>
                 <div><Typography fontWeight={700} fontSize={18} color={'#727070'}>{subTotal + shippingPrice}</Typography></div>
             </div>
-            <div className="btn-cart" style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 0px' }}>
-                <div>
-                    <Button type="primary" sx={{ backgroundColor: '#C4C4C4' }}>
-                        <Typography fontWeight={700} fontSize={18} color={'#000000'}>View Cart</Typography>
-                    </Button>
-                </div>
-                <div>
-                    <Button type="primary" sx={{ backgroundColor: '#FFD333' }}>
-                        <Typography fontWeight={700} fontSize={18} color={'#000000'}>Checkout</Typography>
-                    </Button>
-                </div>
-            </div>
         </>
     )
 }

@@ -11,6 +11,7 @@ import { modifyLetter } from "../../ultis/ultis";
 import { useNavigate } from "react-router-dom";
 import CartMenuComponent from "../CartMenuComponent/CartMenuComponent";
 import CartProductTotal from "../CartMenuComponent/CartProductTotal";
+import CartButton from "../CartMenuComponent/CartButton";
 
 const HeaderComponent = () => {
     const arrHeader = [
@@ -112,6 +113,7 @@ const HeaderComponent = () => {
                                     </div>
                                     <div className="cart-products-total" style={{ padding: '10px 15px 5px 15px' }}>
                                         <CartProductTotal />
+                                        <CartButton />
                                     </div>
                                 </>}
 
