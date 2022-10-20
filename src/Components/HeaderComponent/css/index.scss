@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Rose&display=swap');
+
 .header-container-temp {
     display: flex;
     padding: 5px 20px;
@@ -26,7 +28,7 @@
     // height: 124px;
     display: flex;
     justify-content: space-between;
-    padding: 20px 20px;
+    padding: 10px 20px;
     align-items: center;
 
 }
@@ -38,12 +40,13 @@
 }
 
 .header-container .left-side .title {
+    font-family: 'Red Rose', cursive;
     color: #fff;
     text-transform: uppercase;
     font-weight: 700;
     // padding: 0 10px;
     color: #000000;
-    font-size: 20px;
+    font-size: 36px;
 }
 
 .header-container .middle-side {
@@ -87,13 +90,20 @@
     border-color: #428D60 !important;
     color: #428D60 !important;
 }
-.css-fvc8ir-MuiBadge-badge{
+
+.css-fvc8ir-MuiBadge-badge {
     background-color: #fff;
 }
-.css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop{
+
+.css-g3hgs1-MuiBackdrop-root-MuiModal-backdrop {
     background-color: rgba(0, 0, 0, 0.5) !important;
-    margin-top: 112px;
+    margin-top: 110px;
 }
-.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper{
+
+.css-1poimk-MuiPaper-root-MuiMenu-paper-MuiPaper-root-MuiPopover-paper {
     margin-top: 12px;
+}
+
+.css-6hp17o-MuiList-root-MuiMenu-list{
+    padding: 0 !important;
 }

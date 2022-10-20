@@ -9,7 +9,9 @@ const ProductImage = () => {
         <>
             <div className="main-image">
                 <Image
-                    width={'100%'}
+                    width={'474px'}
+                    height={'474px'}
+                    style={{ borderRadius: '5px' }}
                     src={mainImage?.url}
                 />
             </div>
@@ -17,8 +19,10 @@ const ProductImage = () => {
                 {product.images && product.images.map((el) => {
                     return <div className="child-item-image" key={el.id}>
                         <Image
-                            width={'100%'}
+                            width={'87px'}
+                            height={'87px'}
                             src={el.url}
+                            style={{ borderRadius: '5px' }}
                             preview={false}
                             onClick={() => setMainImage(el)}
                         />

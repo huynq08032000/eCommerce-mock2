@@ -5,6 +5,17 @@ export const access_token_time = 'access_token_time'
 export const refresh_token_time = 'refresh_token_time'
 export const deviceId = 'deviceId'
 
+export const findIndex = (arr, payload) => {
+    return arr.findIndex(el => el.id === payload.id)
+}
+
+export const countSubtotal = (arr) => {
+    let subtotal = 0;
+    arr.forEach(el => {
+        subtotal += el.quantity * el.price
+    })
+    return subtotal;
+}
 export const modifyLetter = (str) => {
     const tmpString = str.toLowerCase()
     return tmpString.charAt(0).toUpperCase() + tmpString.slice(1);
@@ -54,7 +65,10 @@ export const getLocalStrogageByKey = (key) => {
     if (localStorage.getItem(key) === undefined) return ''
     return b64DecodeUnicode(localStorage.getItem(key))
 }
-
+export const clearLocalStorage = () => {
+    const key = [access_token, access_token_time, refresh_token, refresh_token_time, deviceId]
+    key.forEach(el => setLocalStorageKey(el, ''))
+}
 export const isExpried = (time) => {
     const current = moment()
     const timeExpried = moment(time)
