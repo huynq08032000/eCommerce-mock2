@@ -29,8 +29,9 @@ const UserSlice = createSlice({
             } else {
                 state.cart[index].quantity += action.payload.quantity
             }
-
-            // state.cart = state.cart.push(action.payload)
+        },
+        removeCart: (state, action) => {
+            state.cart = state.cart.filter(el => el.id !== action.payload.id)
         }
     },
     extraReducers: (builder) => {
@@ -38,5 +39,5 @@ const UserSlice = createSlice({
     }
 })
 
-export const { setUser, setDeviceId, addCart } = UserSlice.actions;
+export const { setUser, setDeviceId, addCart, removeCart } = UserSlice.actions;
 export default UserSlice.reducer;

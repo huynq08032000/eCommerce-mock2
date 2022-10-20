@@ -1,10 +1,11 @@
 import { Button, Rating, Typography } from "@mui/material";
 import React, { useLayoutEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import './css/index.scss'
 import { toast } from "react-toastify";
 import { Tag } from "antd";
+import { addCart } from "../../redux/UserSlice";
 
 const colorOption = [
     {
@@ -25,9 +26,11 @@ const colorOption = [
     }
 ]
 const ProductInfo = () => {
+    const dispatch = useDispatch()
     const { product } = useSelector(state => state.productDetail)
     const [quantity, setQuantity] = useState(1)
     const handleIncrease = () => {
+        if (quantity === parseInt(product.countInStock)) return
         setQuantity(prev => prev + 1)
     }
     const handleDecrease = () => {
@@ -42,6 +45,11 @@ const ProductInfo = () => {
             return style
         }
         return style
+    }
+    const handleAdd = () => {
+        const tmpProduct = { ...product }
+        tmpProduct.quantity = quantity;
+        dispatch(addCart(tmpProduct))
     }
     return (
         <>
@@ -94,7 +102,7 @@ const ProductInfo = () => {
                             <div onClick={handleIncrease}><Button style={{ color: '#33A0FF', fontSize: '15px', fontWeight: '700' }}>+</Button></div>
                         </div>
                         <div className="btn-add-to-cart">
-                            <Button style={{ backgroundColor: '#FFD333', color: '#000000', padding: '5px 20px' }}><ShoppingCartOutlinedIcon />Add to Cart</Button>
+                            <Button style={{ backgroundColor: '#FFD333', color: '#000000', padding: '5px 20px' }} onClick={handleAdd}><ShoppingCartOutlinedIcon />Add to Cart</Button>
                         </div>
                     </div>
                 </>}
