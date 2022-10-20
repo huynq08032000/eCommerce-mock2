@@ -65,7 +65,10 @@ export const getLocalStrogageByKey = (key) => {
     if (localStorage.getItem(key) === undefined) return ''
     return b64DecodeUnicode(localStorage.getItem(key))
 }
-
+export const clearLocalStorage = () => {
+    const key = [access_token, access_token_time, refresh_token, refresh_token_time, deviceId]
+    key.forEach(el => setLocalStorageKey(el, ''))
+}
 export const isExpried = (time) => {
     const current = moment()
     const timeExpried = moment(time)

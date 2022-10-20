@@ -5,15 +5,20 @@ import SearchComponent from '../HeaderComponent/ChildComponent/SearchComponent/S
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import AuthModal from "../AuthModal/AuthModal";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Avatar, Badge, Menu, MenuItem, Tooltip, Typography } from "@mui/material";
-import { modifyLetter } from "../../ultis/ultis";
+import { clearLocalStorage, modifyLetter } from "../../ultis/ultis";
 import { useNavigate } from "react-router-dom";
 import CartMenuComponent from "../CartMenuComponent/CartMenuComponent";
 import CartProductTotal from "../CartMenuComponent/CartProductTotal";
 import CartButton from "../CartMenuComponent/CartButton";
+import { clearUser } from "../../redux/UserSlice";
 
 const HeaderComponent = () => {
+    const dispatch = useDispatch()
+    const { user, cart } = useSelector(state => state.user)
+    const navigate = useNavigate();
+
     const arrHeader = [
         {
             title: 'About us'
@@ -28,8 +33,29 @@ const HeaderComponent = () => {
             title: 'Track Orders'
         }
     ]
-    const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
-    const { user, cart } = useSelector(state => state.user)
+    const settings = [
+        {
+            label: 'My Porfile',
+            onClick: () => {
+                navigate(`/myprofile`)
+            }
+        },
+        {
+            label: 'Order History',
+            onClick: () => {
+                navigate('/orderhistory')
+            }
+        },
+        {
+            label: 'Logout',
+            onClick: () => {
+                console.log('Logout')
+                localStorage.clear()
+                window.location.pathname = '/'
+            }
+        }
+    ];
+
     console.log(cart)
     const [open, setOpen] = useState(false);
     const [anchorElUser, setAnchorElUser] = useState(null);
@@ -49,7 +75,6 @@ const HeaderComponent = () => {
     const handleCloseCartMenu = () => {
         setAnchorElCart(null);
     };
-    const navigate = useNavigate()
     return (
         <>
             <div style={{ backgroundColor: '#F0E9E9' }}>
@@ -142,8 +167,8 @@ const HeaderComponent = () => {
                                     onClose={handleCloseUserMenu}
                                 >
                                     {settings.map((setting) => (
-                                        <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                            <Typography textAlign="center">{setting}</Typography>
+                                        <MenuItem key={setting} onClick={setting.onClick}>
+                                            <Typography textAlign="center">{setting.label}</Typography>
                                         </MenuItem>
                                     ))}
                                 </Menu></> : <><IconButton onClick={handleOpen}><PersonOutlineOutlinedIcon style={{ margin: '0 5px' }} /></IconButton></>}
