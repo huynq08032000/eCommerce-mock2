@@ -5,6 +5,17 @@ export const access_token_time = 'access_token_time'
 export const refresh_token_time = 'refresh_token_time'
 export const deviceId = 'deviceId'
 
+export const findIndex = (arr, payload) => {
+    return arr.findIndex(el => el.id === payload.id)
+}
+
+export const countSubtotal = (arr) => {
+    let subtotal = 0;
+    arr.forEach(el => {
+        subtotal += el.quantity * el.price
+    })
+    return subtotal;
+}
 export const modifyLetter = (str) => {
     const tmpString = str.toLowerCase()
     return tmpString.charAt(0).toUpperCase() + tmpString.slice(1);

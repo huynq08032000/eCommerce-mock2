@@ -10,6 +10,7 @@ import { Avatar, Badge, Menu, MenuItem, Tooltip, Typography } from "@mui/materia
 import { modifyLetter } from "../../ultis/ultis";
 import { useNavigate } from "react-router-dom";
 import CartMenuComponent from "../CartMenuComponent/CartMenuComponent";
+import CartProductTotal from "../CartMenuComponent/CartProductTotal";
 
 const HeaderComponent = () => {
     const arrHeader = [
@@ -28,11 +29,11 @@ const HeaderComponent = () => {
     ]
     const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
     const { user, cart } = useSelector(state => state.user)
+    console.log(cart)
     const [open, setOpen] = useState(false);
-    const [openCart, setOpenCart] = useState(false)
-    const handleOpen = () => setOpen(true);
     const [anchorElUser, setAnchorElUser] = useState(null);
     const [anchorElCart, setAnchorElCart] = useState(null)
+    const handleOpen = () => setOpen(true);
     const handleOpenUserMenu = (event) => {
         setAnchorElUser(event.currentTarget);
     };
@@ -47,7 +48,6 @@ const HeaderComponent = () => {
     const handleCloseCartMenu = () => {
         setAnchorElCart(null);
     };
-    console.log(user)
     const navigate = useNavigate()
     return (
         <>
@@ -96,11 +96,25 @@ const HeaderComponent = () => {
                                 open={Boolean(anchorElCart)}
                                 onClose={handleCloseCartMenu}
                             >
-                                {settings.map((index) => (
-                                    <MenuItem key={index}>
-                                        <CartMenuComponent />
-                                    </MenuItem>
-                                ))}
+                                {cart.length === 0 ? <>
+                                    <div style={{
+                                        width: '338px', height: '113px', boxShadow: '4px 4px 4px rgba(0, 0, 0, 0.25)', borderRadius: '5px', display: 'flex',
+                                        alignItems: 'center', justifyContent: 'center'
+                                    }}>
+                                        <Typography fontSize={16} fontFamily={"Roboto"}>Your shopping cart is empty!</Typography>
+                                    </div></> : <>
+                                    <div className="cart-products-detail" style={{ maxHeight: '200px', overflowY: 'scroll', borderBottom: '1px solid #959292' }}>
+                                        {cart.map((el, index) => (
+                                            <MenuItem key={el.id}>
+                                                <CartMenuComponent product={el} />
+                                            </MenuItem>
+                                        ))}
+                                    </div>
+                                    <div className="cart-products-total" style={{ padding: '10px 15px 5px 15px' }}>
+                                        <CartProductTotal />
+                                    </div>
+                                </>}
+
                             </Menu>
                         </div>
                         <div className="child-items">

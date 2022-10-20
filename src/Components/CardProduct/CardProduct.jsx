@@ -9,16 +9,18 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import IconButton from '@mui/material/IconButton';
 import 'antd/dist/antd.css';
 import { Link } from "react-router-dom";
+import { addCart } from "../../redux/UserSlice";
 
 const CardProduct = ({ product }) => {
+    const dispatch = useDispatch()
     const handleAddCart = (obj) => {
         const tmpObj = { ...obj }
         tmpObj.quantity = 1
-        console.log(tmpObj)
+        dispatch(addCart(tmpObj))
     }
     return (
         <>
-            <Card sx={{ width: 350, height: '420px', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight: '20px' }}>
+            <Card sx={{ width: 350, height: '470px', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight: '20px' }}>
                 <CardMedia
                     component="img"
                     height="200"
