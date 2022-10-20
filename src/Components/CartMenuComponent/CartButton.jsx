@@ -11,12 +11,12 @@ const CartButton = () => {
         <>
             <div className="btn-cart" style={{ display: 'flex', justifyContent: 'space-between', margin: '10px 0px' }}>
                 <div>
-                    <Button type="primary" sx={{ backgroundColor: '#C4C4C4' }} onClick={() => handleOnClick('/shoppingcart')}>
+                    <Button type="primary" sx={{ backgroundColor: '#C4C4C4', textTransform: 'none' }} onClick={() => handleOnClick('/shoppingcart')}>
                         <Typography fontWeight={700} fontSize={18} color={'#000000'}>View Cart</Typography>
                     </Button>
                 </div>
                 <div>
-                    <Button type="primary" sx={{ backgroundColor: '#FFD333' }}>
+                    <Button type="primary" sx={{ backgroundColor: '#FFD333', textTransform: 'none' }}>
                         <Typography fontWeight={700} fontSize={18} color={'#000000'}>Checkout</Typography>
                     </Button>
                 </div>

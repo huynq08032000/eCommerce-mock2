@@ -54,7 +54,7 @@ const WriteReview = () => {
                             onChange={e => setContent(e.target.value)}
                         />
                         {message !== '' && <Typography color={'red'}>{message}</Typography>}
-                        <LoadingButton onClick={handleOnSumbit} loading={isAddLoading} loadingPosition={'start'} color="primary" style={{ backgroundColor: '#FFD333', color: '#000000', padding: '5px 30px', marginTop: '10px', fontWeight: '700', fontSize: '16px' }}>Post Your Review</LoadingButton>
+                        <LoadingButton onClick={handleOnSumbit} loading={isAddLoading} loadingPosition={'start'} color="primary" style={{ backgroundColor: '#FFD333', color: '#000000', padding: '5px 30px', marginTop: '10px', fontWeight: '700', fontSize: '16px', textTransform: 'none' }}>Post Your Review</LoadingButton>
                     </form>
                 </> : <><Typography>Login before write review</Typography></>
             }

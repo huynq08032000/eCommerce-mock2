@@ -102,7 +102,7 @@ const ProductInfo = () => {
                             <div onClick={handleIncrease}><Button style={{ color: '#33A0FF', fontSize: '15px', fontWeight: '700' }}>+</Button></div>
                         </div>
                         <div className="btn-add-to-cart">
-                            <Button style={{ backgroundColor: '#FFD333', color: '#000000', padding: '5px 20px' }} onClick={handleAdd}><ShoppingCartOutlinedIcon />Add to Cart</Button>
+                            <Button style={{ backgroundColor: '#FFD333', color: '#000000', padding: '10px 20px', textTransform: 'none' }} onClick={handleAdd}><ShoppingCartOutlinedIcon /><Typography fontSize={16} fontWeight={700}>Add to cart</Typography></Button>
                         </div>
                     </div>
                 </>}
