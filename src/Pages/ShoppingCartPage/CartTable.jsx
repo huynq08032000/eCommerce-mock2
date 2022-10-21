@@ -40,7 +40,6 @@ const CartTable = () => {
     const [rows, setRows] = useState([]);
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state.user)
-    console.log(cart)
     useEffect(() => {
         const rowsTmp = cart?.map(el => createData(el.id, el.images[0]?.url, el.name, el.price, el.quantity))
         console.log(rowsTmp)
