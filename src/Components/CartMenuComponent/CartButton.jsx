@@ -16,7 +16,7 @@ const CartButton = () => {
                     </Button>
                 </div>
                 <div>
-                    <Button type="primary" sx={{ backgroundColor: '#FFD333', textTransform: 'none' }}>
+                    <Button type="primary" sx={{ backgroundColor: '#FFD333', textTransform: 'none' }} onClick={() => handleOnClick('/checkout')}>
                         <Typography fontWeight={700} fontSize={18} color={'#000000'}>Checkout</Typography>
                     </Button>
                 </div>
