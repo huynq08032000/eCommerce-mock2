@@ -48,6 +48,7 @@ const CheckOutTotal = () => {
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="radio-buttons-group"
+                            defaultValue={'cashondeliver'}
                         >
                             {type.map((el, index) => {
                                 return <div className="type-order-child">

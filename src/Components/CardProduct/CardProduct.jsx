@@ -22,6 +22,7 @@ const CardProduct = ({ product }) => {
         <>
             <Card sx={{ width: 350, height: '470px', padding: '20px', boxShadow: 'rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px', marginRight: '20px' }}>
                 <CardMedia
+                    style={{ borderRadius: '5px' }}
                     component="img"
                     height="200"
                     image={product.images[0] ? product.images[0].url : ''}
