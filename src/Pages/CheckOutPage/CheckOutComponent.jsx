@@ -3,6 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import CustomSeparator from "../../Components/BreadCrumbsComponent/CustomSeparator";
 import CheckOutTable from "./CheckOutTable";
+import CheckOutTotal from "./CheckOutTotal";
 import ShippingInformationComponent from "./ShippingInformationComponent";
 
 const CheckOutComponent = () => {
@@ -22,7 +23,7 @@ const CheckOutComponent = () => {
                         <ShippingInformationComponent />
                     </div>
                     <div>
-                        Checkout
+                        <CheckOutTotal />
                     </div>
                 </div>
             </div>
