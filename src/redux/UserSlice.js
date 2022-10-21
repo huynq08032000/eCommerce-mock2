@@ -1,5 +1,7 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
+import { toast } from "react-toastify"
+import { toastCss } from "../Components/StyleComponent/StyleComponent"
 import { findIndex } from "../ultis/ultis"
 
 const initState = {
@@ -24,6 +26,10 @@ const UserSlice = createSlice({
             state.cart = []
         },
         addCart: (state, action) => {
+            if (state.user.id === undefined) {
+                toast.error('Login before choose product', toastCss)
+                return
+            }
             const index = findIndex(state.cart, action.payload)
             if (index === -1) {
                 state.cart.push(action.payload)
