@@ -9,9 +9,8 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { useDispatch, useSelector } from "react-redux";
 import { Image } from "antd";
-import { Button } from "@mui/material";
-import './css/index.scss'
-import { decreaseQuantity, increaseQuantity } from "../../redux/UserSlice";
+import { Button, Typography } from "@mui/material";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#C4C4C4",
@@ -36,7 +35,7 @@ function createData(id, image, product, price, quantity) {
     return { id, image, product, price, quantity };
 }
 
-const CartTable = () => {
+const CheckOutTable = () => {
     const [rows, setRows] = useState([]);
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state.user)
@@ -46,21 +45,13 @@ const CartTable = () => {
         console.log(rowsTmp)
         setRows(rowsTmp)
     }, [cart])
-    const handleIncrease = (el) => {
-        dispatch(increaseQuantity(el))
-    }
-    const handleDecrease = (el) => {
-        dispatch(decreaseQuantity(el))
-    }
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 700 }} aria-label="customized table">
+            <Table sx={{ maxWidth: 765 }} aria-label="customized table">
                 <TableHead>
                     <TableRow>
                         <StyledTableCell align="center">Image</StyledTableCell>
                         <StyledTableCell align="left">Product</StyledTableCell>
-                        <StyledTableCell align="center">Price</StyledTableCell>
-                        <StyledTableCell align="center">Quantity</StyledTableCell>
                         <StyledTableCell align="center">Total</StyledTableCell>
                     </TableRow>
                 </TableHead>
@@ -68,16 +59,11 @@ const CartTable = () => {
                     {rows?.map((el) => (
                         <StyledTableRow key={el.id}>
                             <StyledTableCell component="th" scope="row" sx={{ width: '120px' }}>
-                                <Image src={el.image} preview={false} width={'119px'} height={'108px'} style={{ borderRadius: '5px' }} />
+                                <Image src={el.image} preview={false} width={'73px'} height={'66px'} style={{ borderRadius: '5px' }} />
                             </StyledTableCell>
-                            <StyledTableCell align="left" sx={{ width: '500px' }}>{el.product}</StyledTableCell>
-                            <StyledTableCell align="center">${el.price}</StyledTableCell>
-                            <StyledTableCell align="center" sx={{ width: '30px' }}>
-                                <div className="btn-group" >
-                                    <div onClick={() => handleDecrease(el)}><Button style={{ color: '#33A0FF', fontSize: '15px', fontWeight: '700' }}>-</Button></div>
-                                    <div>{el.quantity}</div>
-                                    <div onClick={() => handleIncrease(el)}><Button style={{ color: '#33A0FF', fontSize: '15px', fontWeight: '700' }}>+</Button></div>
-                                </div>
+                            <StyledTableCell align="left" sx={{ width: '500px' }}>
+                                <Typography fontSize={24} fontWeight={700}>{el.product}</Typography>
+                                <Typography fontSize={16} fontWeight={700}>Qty: {el.quantity}</Typography>
                             </StyledTableCell>
                             <StyledTableCell align="center">${el.quantity * el.price}</StyledTableCell>
                         </StyledTableRow>
@@ -88,4 +74,4 @@ const CartTable = () => {
     );
 }
 
-export default CartTable;
+export default CheckOutTable;
