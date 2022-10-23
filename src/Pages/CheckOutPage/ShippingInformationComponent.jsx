@@ -66,6 +66,7 @@ const ShippingInformationComponent = () => {
                 toast.error(error.response.data.message, toastCss)
             }
         setLoading(false)
+        handleEdit()
     }
     return (
         <>
@@ -110,7 +111,7 @@ const ShippingInformationComponent = () => {
 
                     <div className="shipping-btn" >
                         <Button sx={{ textTransform: 'none', padding: '10px 0px', color: 'red' }} onClick={handleCancel}>Cancel</Button>
-                        <LoadingButton loadingPosition="start" loading={loading} sx={{ textTransform: 'none', padding: '10px 0px', color: 'green' }} onClick={formik.handleSubmit}>Save</LoadingButton>
+                        <LoadingButton loadingPosition="start" loading={loading} sx={{ textTransform: 'none', padding: '10px 0px', color: 'green', width: '100px' }} onClick={formik.handleSubmit}>Save</LoadingButton>
                     </div>
                 </>}
 
