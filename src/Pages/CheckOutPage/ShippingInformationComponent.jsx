@@ -1,11 +1,17 @@
+import { LoadingButton } from "@mui/lab";
 import { Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import _ from "lodash";
+import _, { values } from "lodash";
 import { set } from "lodash";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import * as yup from "yup";
-import { regexContact, regexEmail } from "../../ultis/ultis";
+import { toastCss } from "../../Components/StyleComponent/StyleComponent";
+import { changeContactApi, changeEmailApi } from "../../config/api";
+import { changeContact, setUser } from "../../redux/UserSlice";
+import axiosInstance from "../../ultis/customAxios";
+import { access_token, getLocalStrogageByKey, regexContact, regexEmail } from "../../ultis/ultis";
 
 const validationSchema = yup.object({
     email: yup
@@ -19,29 +25,48 @@ const validationSchema = yup.object({
 });
 
 const ShippingInformationComponent = () => {
+    const dispatch = useDispatch()
     const { user } = useSelector(state => state.user)
-    const [cloneUser, setCloneUser] = useState(_.cloneDeep(user))
+    const [loading, setLoading] = useState(false)
     const [edit, setEdit] = useState(false)
     const handleEdit = () => {
         setEdit(!edit)
     }
     const handleCancel = () => {
-        setCloneUser(_.cloneDeep(user))
+        formik.setValues(user)
         handleEdit()
     }
     const handleSave = () => {
         handleEdit()
     }
     const formik = useFormik({
-        initialValues: cloneUser,
+        initialValues: user,
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values)
+            updateInfor(values)
         }
     });
-    useEffect(() => {
-        formik.setValues(cloneUser)
-    }, [cloneUser])
+    const updateInfor = async (values) => {
+        let res;
+        setLoading(true)
+        if (user.contact !== values.contact)
+            try {
+                res = await axiosInstance.patch(changeContactApi, { contact: values.contact })
+                toast.success(res.data.message, toastCss)
+                dispatch(setUser(res.data.data))
+            } catch (error) {
+                toast.error(error.response.data.message, toastCss)
+            }
+        if (user.email !== values.email)
+            try {
+                res = await axiosInstance.patch(changeEmailApi, { email: values.email })
+                toast.success(res.data.message, toastCss)
+                dispatch(setUser(res.data.data))
+            } catch (error) {
+                toast.error(error.response.data.message, toastCss)
+            }
+        setLoading(false)
+    }
     return (
         <>
             <div className="shipping-container" style={{ padding: '10px', borderRadius: '5px', border: '1px solid rgba(90, 90, 90, 0.4)' }}>
@@ -66,16 +91,18 @@ const ShippingInformationComponent = () => {
                     <TextField fontSize={14} value={'La Khe, Ha Dong, Hanoi'} fullWidth></TextField>
                     <div style={{ margin: '10px 0px' }}>
                         <Typography fontSize={14} fontWeight={700}>Phone Number</Typography>
-                        <TextField fontSize={14} value={formik.values.contact} fullWidth onChange={(e) => {
-                            setCloneUser({ ...cloneUser, contact: e.target.value })
+                        <TextField fontSize={14} value={formik.values.contact} fullWidth name='contact' onChange={(e) => {
+                            // setCloneUser({ ...cloneUser, contact: e.target.value })
+                            formik.handleChange(e)
                         }}></TextField>
-                        {formik.errors.contact && <Typography color={'red'}>{formik.errors.contact}</Typography>}
+                        {formik.errors.contact && formik.values.contact !== null && <Typography color={'red'}>{formik.errors.contact}</Typography>}
                     </div>
                     <div style={{ margin: '10px 0px' }}>
                         <Typography fontSize={14} fontWeight={700}>Email Adress</Typography>
-                        <TextField fontSize={14} value={formik.values.email} fullWidth
+                        <TextField fontSize={14} value={formik.values.email} fullWidth name='email'
                             onChange={(e) => {
-                                setCloneUser({ ...cloneUser, email: e.target.value })
+                                formik.handleChange(e)
+                                // setCloneUser({ ...cloneUser, email: e.target.value })
                             }}
                         ></TextField>
                         {formik.errors.email && <Typography color={'red'}>{formik.errors.email}</Typography>}
@@ -83,7 +110,7 @@ const ShippingInformationComponent = () => {
 
                     <div className="shipping-btn" >
                         <Button sx={{ textTransform: 'none', padding: '10px 0px', color: 'red' }} onClick={handleCancel}>Cancel</Button>
-                        <Button sx={{ textTransform: 'none', padding: '10px 0px', color: 'green' }} onClick={formik.handleSubmit}>Save</Button>
+                        <LoadingButton loadingPosition="start" loading={loading} sx={{ textTransform: 'none', padding: '10px 0px', color: 'green' }} onClick={formik.handleSubmit}>Save</LoadingButton>
                     </div>
                 </>}
 

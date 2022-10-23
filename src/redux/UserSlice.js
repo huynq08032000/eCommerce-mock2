@@ -2,6 +2,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
 import axios from "axios"
 import { toast } from "react-toastify"
 import { toastCss } from "../Components/StyleComponent/StyleComponent"
+import { changeContactApi, changeEmailApi } from "../config/api"
+import axiosInstance from "../ultis/customAxios"
 import { findIndex } from "../ultis/ultis"
 
 const initState = {
