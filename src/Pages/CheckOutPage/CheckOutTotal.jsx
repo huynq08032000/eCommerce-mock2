@@ -1,6 +1,12 @@
-import { Button, FormControl, FormControlLabel, FormLabel, Radio, RadioGroup, Typography } from "@mui/material";
-import React, { useMemo } from "react";
-import { useSelector } from "react-redux";
+import { LoadingButton } from "@mui/lab";
+import { FormControl, FormControlLabel, Radio, RadioGroup, Typography } from "@mui/material";
+import React, { useMemo, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
+import { toastCss } from "../../Components/StyleComponent/StyleComponent";
+import { createOrderApi } from "../../config/api";
+import { setCart } from "../../redux/UserSlice";
+import axiosInstance from "../../ultis/customAxios";
 import { countSubtotal } from "../../ultis/ultis";
 import './css/index.scss'
 const CheckOutTotal = () => {
@@ -22,9 +28,55 @@ const CheckOutTotal = () => {
             label: 'Master card'
         }
     ]
+    const dispatch = useDispatch()
     const { user, cart } = useSelector(state => state.user)
+    const [loading, setLoading] = useState(false)
+    const [paymentMethod, setPaymentMethod] = useState(type[0].value)
     const shipping = 10
     const subTotal = useMemo(() => countSubtotal(cart), [cart])
+    const handleCheckOut = () => {
+        if (user.contact === null) {
+            toast.error('Update contact before checkout', toastCss)
+            return
+        }
+        if (cart.length === 0) {
+            toast.error('Cart is not empty', toastCss)
+            return
+        }
+        const itemArr = cart.map(el => {
+            return {
+                productId: el.id,
+                quantity: el.quantity,
+                price: el.price,
+                total: el.quantity * el.price,
+            }
+        })
+        const values = {
+            order: {
+                paymentMethod: 'Online',
+                address: 'La Khe, Ha Dong, Hanoi',
+                contact: user.contact,
+                totalPrice: subTotal + shipping,
+                userId: user.id
+            },
+            itemArr: itemArr
+        }
+        checkout(values)
+    }
+    const checkout = async (values) => {
+        setLoading(true)
+        try {
+            const res = await axiosInstance.post(createOrderApi, {
+                order: values.order,
+                itemArr: values.itemArr
+            })
+            toast.success(res.data.message, toastCss)
+            dispatch(setCart([]))
+        } catch (error) {
+            toast.error(error.response.data.message, toastCss)
+        }
+        setLoading(false)
+    }
     return (
         <>
             <div className="checkout-total-container" style={{ marginTop: '10px', padding: '10px', borderRadius: '5px', border: '1px solid rgba(90, 90, 90, 0.4)' }}>
@@ -48,7 +100,10 @@ const CheckOutTotal = () => {
                         <RadioGroup
                             aria-labelledby="demo-radio-buttons-group-label"
                             name="radio-buttons-group"
-                            defaultValue={'cashondeliver'}
+                            value={paymentMethod}
+                            onChange={(e) => {
+                                setPaymentMethod(e.target.value)
+                            }}
                         >
                             {type.map((el, index) => {
                                 return <div className="type-order-child">
@@ -56,7 +111,7 @@ const CheckOutTotal = () => {
                                 </div>
                             })}
                         </RadioGroup>
-                        <Button sx={{ backgroundColor: '#FFD333', textTransform: 'none', }} fullWidth><Typography fontSize={24} fontWeight={700} color={'#000000'}>Checkout</Typography></Button>
+                        <LoadingButton sx={{ backgroundColor: '#FFD333', textTransform: 'none', }} fullWidth loadingPosition="start" onClick={handleCheckOut} loading={loading}><Typography fontSize={24} fontWeight={700} color={'#000000'}>Checkout</Typography></LoadingButton>
                     </FormControl>
 
                 </div>

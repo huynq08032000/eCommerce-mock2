@@ -1,9 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
 import { toastCss } from "../Components/StyleComponent/StyleComponent"
-import { changeContactApi, changeEmailApi } from "../config/api"
-import axiosInstance from "../ultis/customAxios"
 import { findIndex } from "../ultis/ultis"
 
 const initState = {
@@ -53,6 +50,9 @@ const UserSlice = createSlice({
                 const index = findIndex(state.cart, action.payload)
                 state.cart[index].quantity -= 1
             }
+        },
+        setCart: (state, action) => {
+            state.cart = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -60,5 +60,5 @@ const UserSlice = createSlice({
     }
 })
 
-export const { setUser, clearUser, setDeviceId, addCart, removeCart, increaseQuantity, decreaseQuantity } = UserSlice.actions;
+export const { setUser, clearUser, setDeviceId, addCart, removeCart, increaseQuantity, decreaseQuantity, setCart } = UserSlice.actions;
 export default UserSlice.reducer;

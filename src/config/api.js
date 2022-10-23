@@ -10,4 +10,5 @@ export const refreshTokenApi = `${urlApi}/v1/auth/refresh-tokens`
 export const changeContactApi = `${urlApi}/v1/users/change-contact`
 export const changeEmailApi = `${urlApi}/v1/users/change-email`
 
+export const createOrderApi = `${urlApi}/v1/orders`
 export const apiGetProductById = `${urlApi}/v1/products/`

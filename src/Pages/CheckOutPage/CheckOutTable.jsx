@@ -41,35 +41,37 @@ const CheckOutTable = () => {
     const { cart } = useSelector(state => state.user)
     useEffect(() => {
         const rowsTmp = cart?.map(el => createData(el.id, el.images[0]?.url, el.name, el.price, el.quantity))
-        console.log(rowsTmp)
         setRows(rowsTmp)
     }, [cart])
     return (
-        <TableContainer component={Paper}>
-            <Table sx={{ maxWidth: 765 }} aria-label="customized table">
-                <TableHead>
-                    <TableRow>
-                        <StyledTableCell align="center">Image</StyledTableCell>
-                        <StyledTableCell align="left">Product</StyledTableCell>
-                        <StyledTableCell align="center">Total</StyledTableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {rows?.map((el) => (
-                        <StyledTableRow key={el.id}>
-                            <StyledTableCell component="th" scope="row" sx={{ width: '120px' }}>
-                                <Image src={el.image} preview={false} width={'73px'} height={'66px'} style={{ borderRadius: '5px' }} />
-                            </StyledTableCell>
-                            <StyledTableCell align="left" sx={{ width: '500px' }}>
-                                <Typography fontSize={24} fontWeight={700}>{el.product}</Typography>
-                                <Typography fontSize={16} fontWeight={700}>Qty: {el.quantity}</Typography>
-                            </StyledTableCell>
-                            <StyledTableCell align="center">${el.quantity * el.price}</StyledTableCell>
-                        </StyledTableRow>
-                    ))}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <>
+            <TableContainer component={Paper}>
+                <Table sx={{ maxWidth: 765 }} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="center">Image</StyledTableCell>
+                            <StyledTableCell align="left">Product</StyledTableCell>
+                            <StyledTableCell align="center">Total</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows?.map((el) => (
+                            <StyledTableRow key={el.id}>
+                                <StyledTableCell component="th" scope="row" sx={{ width: '120px' }}>
+                                    <Image src={el.image} preview={false} width={'73px'} height={'66px'} style={{ borderRadius: '5px' }} />
+                                </StyledTableCell>
+                                <StyledTableCell align="left" sx={{ width: '500px' }}>
+                                    <Typography fontSize={24} fontWeight={700}>{el.product}</Typography>
+                                    <Typography fontSize={16} fontWeight={700}>Qty: {el.quantity}</Typography>
+                                </StyledTableCell>
+                                <StyledTableCell align="center">${el.quantity * el.price}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
+
     );
 }
 
