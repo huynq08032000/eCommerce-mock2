@@ -1,11 +1,11 @@
-import { Button, TextField, Typography } from "@mui/material";
-import React from "react";
+import { Button, FormControl, MenuItem, Select, TextField, Typography } from "@mui/material";
+import React, { useState } from "react";
 import AdminCustomSeparator from "../../AdminComponents/AdminBreadCrumbsComponent/AdminCustomSeparator";
 import ProductCreateComponent from "./ProductCreateComponent";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 
 const ProductAddComponent = () => {
-
+    const [rating, setRating] = useState(1)
     return (
         <>
             <AdminCustomSeparator breadcums={[{ label: 'Product', href: '/productList' }, { label: 'Create product' }]} />
@@ -83,6 +83,22 @@ const ProductAddComponent = () => {
                     </ProductCreateComponent>
                     <ProductCreateComponent label={'Rating'} style={{ width: '431px', height: '241px', marginTop: '20px' }}>
                         <div className="input-wrapper" style={{ marginTop: '30px', width: '100%' }}>
+                            <FormControl sx={{ paddingLeft: '20px !important', width: '100%' }}>
+                                <Select
+                                    sx={{ paddingLeft: '20px !important', width: '100%' }}
+                                    fullWidth
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    value={rating}
+                                    onChange={(e) => setRating(e.target.value)}
+                                >
+                                    <MenuItem value={1}>1</MenuItem>
+                                    <MenuItem value={2}>2</MenuItem>
+                                    <MenuItem value={3}>3</MenuItem>
+                                    <MenuItem value={4}>4</MenuItem>
+                                    <MenuItem value={5}>5</MenuItem>
+                                </Select>
+                            </FormControl>
                         </div>
                     </ProductCreateComponent>
                 </div>
