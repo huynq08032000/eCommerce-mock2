@@ -9,6 +9,7 @@ export const apiForgot = `${urlApi}/v1/auth/forgot-password`
 export const refreshTokenApi = `${urlApi}/v1/auth/refresh-tokens`
 export const changeContactApi = `${urlApi}/v1/users/change-contact`
 export const changeEmailApi = `${urlApi}/v1/users/change-email`
+export const changeUsernameApi = `${urlApi}/v1/users/change-username`
 
 export const createOrderApi = `${urlApi}/v1/orders`
 export const getMyOrdersApi = `${urlApi}/v1/orders/my-orders`

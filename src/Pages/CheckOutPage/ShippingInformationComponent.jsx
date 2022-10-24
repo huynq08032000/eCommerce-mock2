@@ -1,17 +1,15 @@
 import { LoadingButton } from "@mui/lab";
 import { Button, TextField, Typography } from "@mui/material";
 import { useFormik } from "formik";
-import _, { values } from "lodash";
-import { set } from "lodash";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify";
 import * as yup from "yup";
 import { toastCss } from "../../Components/StyleComponent/StyleComponent";
 import { changeContactApi, changeEmailApi } from "../../config/api";
-import { changeContact, setUser } from "../../redux/UserSlice";
+import { setUser } from "../../redux/UserSlice";
 import axiosInstance from "../../ultis/customAxios";
-import { access_token, getLocalStrogageByKey, regexContact, regexEmail } from "../../ultis/ultis";
+import { regexContact, regexEmail } from "../../ultis/ultis";
 
 const validationSchema = yup.object({
     email: yup

@@ -6,7 +6,6 @@ import ModalEditProfile from "./ModalEditProfile";
 const MyProfileDetailComponent = () => {
     const [open, setOpen] = useState(false);
     const { user } = useSelector(state => state.user)
-    console.log(user)
     return (
         <>
             <Avatar
