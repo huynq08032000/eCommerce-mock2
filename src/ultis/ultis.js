@@ -8,7 +8,13 @@ export const deviceId = 'deviceId'
 export const findIndex = (arr, payload) => {
     return arr.findIndex(el => el.id === payload.id)
 }
-
+export const numInArray = (num, arr) => {
+    if (arr) {
+        const found = arr?.find(element => element === num);
+        return found ? true : false
+    }
+    return false;
+}
 export const countSubtotal = (arr) => {
     let subtotal = 0;
     arr.forEach(el => {
@@ -36,6 +42,10 @@ export const b64EncodeUnicode = (str) => window.btoa(str)
 // );
 export const modifyTime = (string) => {
     return moment(string).format('DD MMM, YYYY')
+}
+
+export const modifyTimeOrderTable = (string) => {
+    return moment(string).format('DD/MM/YYYY')
 }
 
 

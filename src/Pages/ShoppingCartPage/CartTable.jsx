@@ -12,6 +12,7 @@ import { Image } from "antd";
 import { Button } from "@mui/material";
 import './css/index.scss'
 import { decreaseQuantity, increaseQuantity } from "../../redux/UserSlice";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#C4C4C4",
