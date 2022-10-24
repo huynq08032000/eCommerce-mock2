@@ -1,0 +1,37 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Rose&display=swap');
+
+.css-p64g7a-MuiList-root {
+    background-color: #3D464D;
+    color: white;
+    height: 100%;
+}
+
+.css-zxdg2z {
+    background-color: #F5F7FA;
+    height: 100vh;
+}
+
+.css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root,
+.css-cveggr-MuiListItemIcon-root {
+    .css-i4bv87-MuiSvgIcon-root {
+        color: #ffffff !important;
+    }
+}
+
+.admin-navbar-rightside {
+    &>div {
+        margin: 0 10px;
+    }
+}
+
+.css-fvc8ir-MuiBadge-badge {
+    background-color: #FFD333;
+}
+
+.css-1m5i5w0-MuiButtonBase-root-MuiListItemButton-root {
+    padding: 5px 10px !important;
+}
+
+.active {
+    background-color: #FFD333 !important;
+}

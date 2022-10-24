@@ -6,6 +6,8 @@ const ShoppingCartPage = lazy(() => import('../Pages/ShoppingCartPage/ShoppingCa
 const CheckOutPage = lazy(() => import('../Pages/CheckOutPage/CheckOutPage'))
 const MyProfilePage = lazy(() => import('../Pages/MyAccountPage/MyProfilePage'))
 const OrderHistoryPage = lazy(() => import('../Pages/MyAccountPage/OrderHistoryPage'))
+const DashboradPage = lazy(() => import('../AdminPages/DashboardPage/DashboradPage'))
+const ProductListPage = lazy(() => import('../AdminPages/ProductPage/ProductListPage'))
 export const ROUTES = [
     {
         path: '/',
@@ -18,21 +20,31 @@ export const ROUTES = [
     {
         path: '/shoppingcart',
         component: <ShoppingCartPage />,
-        role: ['user']
+        role: ['user', 'admin']
     },
     {
         path: '/checkout',
         component: <CheckOutPage />,
-        role: ['user']
+        role: ['user', 'admin']
     },
     {
         path: '/myprofile',
         component: <MyProfilePage />,
-        role: ['user']
+        role: ['user', 'admin']
     },
     {
-        path: 'orderhistory',
+        path: '/orderhistory',
         component: <OrderHistoryPage />,
-        role: ['user']
+        role: ['user', 'admin']
+    },
+    {
+        path: '/admin',
+        component: <DashboradPage />,
+        role: ['admin']
+    },
+    {
+        path: '/productList',
+        component: <ProductListPage />,
+        role: ['admin']
     }
 ]
