@@ -15,13 +15,11 @@ const MyAccountPageComponent = ({ style, rightSideComponent }) => {
                     <Typography fontWeight={700} fontSize={28}>Navigation</Typography>
                     <NavLink to="/myprofile" className="myaccount-leftside-link" style={({ isActive }) => ({
                         color: isActive ? '#FFD333' : '#868484',
-                        backgroundColor: '#fff'
                     })}>
                         My Profile
                     </NavLink>
                     <NavLink to="/orderhistory" className="myaccount-leftside-link" style={({ isActive }) => ({
                         color: isActive ? '#FFD333' : '#868484',
-                        backgroundColor: '#fff'
                     })}>
                         Order History
                     </NavLink>
