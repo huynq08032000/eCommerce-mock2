@@ -41,6 +41,19 @@
     box-shadow: 0.5px 0.5px 12px rgba(0, 0, 0, 0.25);
 }
 
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+    background-color: #DFE3E8 !important;
+
+    &.Mui-selected {
+        background-color: #FFD333 !important;
+    }
+
+    &.Mui-disabled {
+        color: #FFD333;
+        background-color: #919EAB !important;
+    }
+}
+
 input {
     border: none;
     width: 100%;
@@ -51,4 +64,40 @@ input {
         outline: none;
 
     }
+}
+
+.table-container {
+    height: 450px;
+    overflow-y: scroll;
+
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+        border: none;
+
+    }
+
+    td,
+    th {
+        border: none;
+        text-align: left;
+        padding: 8px;
+    }
+
+    tr {
+        border: 1px solid #929395;
+        border-right: none;
+        border-left: none;
+
+        &:first-child {
+            &:hover {
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
+    padding : 5px 32px 5px 5px!important;
 }
