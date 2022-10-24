@@ -168,10 +168,11 @@ const ProductListComponent = () => {
                     <Pagination count={totalPages} variant="outlined" shape="rounded" onChange={(e, number) => {
                         setCurrentPage(number)
                     }} />
-                    <div style={{ display: 'flex' }}>
+                    <div style={{ display: 'flex', alignItems : 'center' }}>
                         <Typography style={styleTyph}>Items per page</Typography>
-                        <FormControl sx={{ padding: '0', height: '25px' }}>
+                        <FormControl >
                             <Select
+                                sx={{ padding: '0', height: '25px' }}
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={size}
