@@ -5,6 +5,7 @@ const ProductDetailPage = lazy(() => import('../Pages/ProductDetailPage/ProductD
 const ShoppingCartPage = lazy(() => import('../Pages/ShoppingCartPage/ShoppingCartPage'))
 const CheckOutPage = lazy(() => import('../Pages/CheckOutPage/CheckOutPage'))
 const MyProfilePage = lazy(() => import('../Pages/MyAccountPage/MyProfilePage'))
+const OrderHistoryPage = lazy(() => import('../Pages/MyAccountPage/OrderHistoryPage'))
 export const ROUTES = [
     {
         path: '/',
@@ -27,6 +28,11 @@ export const ROUTES = [
     {
         path: '/myprofile',
         component: <MyProfilePage />,
+        role: ['user']
+    },
+    {
+        path: 'orderhistory',
+        component: <OrderHistoryPage />,
         role: ['user']
     }
 ]
