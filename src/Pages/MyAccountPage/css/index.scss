@@ -1,0 +1,52 @@
+.myaccount-leftside {
+    width: 280px;
+    height: 673px;
+    background: #FFFEFE;
+    border: 1px solid rgba(90, 90, 90, 0.4);
+    box-sizing: border-box;
+    box-shadow: 0.5px 0.5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    padding: 20px;
+
+    .myaccount-leftside-link {
+        display: block;
+        margin: 10px 0px;
+        font-size: 24px;
+        font-weight: 500;
+    }
+}
+
+.myaccount-rightside {
+    width: 1100px;
+    max-width: 100%;
+    height: 673px;
+    background: #FFFEFE;
+    border: 1px solid rgba(90, 90, 90, 0.4);
+    border-radius: 5px;
+}
+
+.myprofile-detail {
+    background-color: rgba(182, 182, 182, 0.4);
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 20px 10px 20px;
+    height: 258px;
+
+    .myprofile-user-info {
+        width: 900px;
+        max-width: 100%;
+    }
+}
+
+.css-19xm0h7-MuiButtonBase-root-MuiPaginationItem-root {
+    background-color: #DFE3E8 !important;
+
+    &.Mui-selected {
+        background-color: #FFD333 !important;
+    }
+
+    &.Mui-disabled {
+        color: #FFD333;
+        background-color: #919EAB !important;
+    }
+}

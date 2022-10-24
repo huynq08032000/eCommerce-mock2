@@ -58,7 +58,7 @@ const ProductInfo = () => {
                     <Typography fontWeight={700} fontSize='40px' lineHeight={'47px'} fontFamily={'Roboto'}>{product.name}</Typography>
                 </div>
                 <div className="product-rating">
-                    <div className="product-rating-child"><Rating name="read-only" value={product.rating} readOnly /></div>
+                    <div className="product-rating-child"><Rating name="read-only" value={product.rating} readOnly precision={0.5} /></div>
                     <div className="product-rating-child"><Typography fontSize={'16px'} fontWeight={700}>{product.numOfReviews} Reviews </Typography></div>
                     <div className="product-rating-child"><Typography fontSize={'16px'} fontWeight={700}>3k Sold</Typography></div>
                 </div>

@@ -1,0 +1,78 @@
+import React, { useEffect, useState } from "react";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
+import { useDispatch, useSelector } from "react-redux";
+import { Image } from "antd";
+import { Button, Typography } from "@mui/material";
+
+const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+        backgroundColor: "#C4C4C4",
+        color: "#000000",
+        fontSize: "16px",
+        fontWeight: "700"
+    },
+    [`&.${tableCellClasses.body}`]: {
+        fontSize: "24px",
+        fontWeight: "700"
+    }
+}));
+
+const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    // hide last border
+    "&:last-child td, &:last-child th": {
+        border: 0
+    }
+}));
+
+function createData(id, image, product, price, quantity) {
+    return { id, image, product, price, quantity };
+}
+
+const CheckOutTable = () => {
+    const [rows, setRows] = useState([]);
+    const dispatch = useDispatch()
+    const { cart } = useSelector(state => state.user)
+    useEffect(() => {
+        const rowsTmp = cart?.map(el => createData(el.id, el.images[0]?.url, el.name, el.price, el.quantity))
+        setRows(rowsTmp)
+    }, [cart])
+    return (
+        <>
+            <TableContainer component={Paper}>
+                <Table sx={{ maxWidth: 765 }} aria-label="customized table">
+                    <TableHead>
+                        <TableRow>
+                            <StyledTableCell align="center">Image</StyledTableCell>
+                            <StyledTableCell align="left">Product</StyledTableCell>
+                            <StyledTableCell align="center">Total</StyledTableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        {rows?.map((el) => (
+                            <StyledTableRow key={el.id}>
+                                <StyledTableCell component="th" scope="row" sx={{ width: '120px' }}>
+                                    <Image src={el.image} preview={false} width={'73px'} height={'66px'} style={{ borderRadius: '5px' }} />
+                                </StyledTableCell>
+                                <StyledTableCell align="left" sx={{ width: '500px' }}>
+                                    <Typography fontSize={24} fontWeight={700}>{el.product}</Typography>
+                                    <Typography fontSize={16} fontWeight={700}>Qty: {el.quantity}</Typography>
+                                </StyledTableCell>
+                                <StyledTableCell align="center">${el.quantity * el.price}</StyledTableCell>
+                            </StyledTableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
+        </>
+
+    );
+}
+
+export default CheckOutTable;

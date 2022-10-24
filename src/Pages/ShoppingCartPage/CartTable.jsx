@@ -12,6 +12,7 @@ import { Image } from "antd";
 import { Button } from "@mui/material";
 import './css/index.scss'
 import { decreaseQuantity, increaseQuantity } from "../../redux/UserSlice";
+
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#C4C4C4",
@@ -40,7 +41,6 @@ const CartTable = () => {
     const [rows, setRows] = useState([]);
     const dispatch = useDispatch()
     const { cart } = useSelector(state => state.user)
-    console.log(cart)
     useEffect(() => {
         const rowsTmp = cart?.map(el => createData(el.id, el.images[0]?.url, el.name, el.price, el.quantity))
         console.log(rowsTmp)
@@ -79,7 +79,7 @@ const CartTable = () => {
                                     <div onClick={() => handleIncrease(el)}><Button style={{ color: '#33A0FF', fontSize: '15px', fontWeight: '700' }}>+</Button></div>
                                 </div>
                             </StyledTableCell>
-                            <StyledTableCell align="center">{el.quantity * el.price}</StyledTableCell>
+                            <StyledTableCell align="center">${el.quantity * el.price}</StyledTableCell>
                         </StyledTableRow>
                     ))}
                 </TableBody>

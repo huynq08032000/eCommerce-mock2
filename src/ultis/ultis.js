@@ -8,7 +8,13 @@ export const deviceId = 'deviceId'
 export const findIndex = (arr, payload) => {
     return arr.findIndex(el => el.id === payload.id)
 }
-
+export const numInArray = (num, arr) => {
+    if (arr) {
+        const found = arr?.find(element => element === num);
+        return found ? true : false
+    }
+    return false;
+}
 export const countSubtotal = (arr) => {
     let subtotal = 0;
     arr.forEach(el => {
@@ -22,6 +28,7 @@ export const modifyLetter = (str) => {
 }
 
 export const regexEmail = /^(([^<>()\\[\]\\.,;:\s@"]+(\.[^<>()\\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+export const regexContact = /^(0|84)(2(0[3-9]|1[0-6|8|9]|2[0-2|5-9]|3[2-9]|4[0-9]|5[1|2|4-9]|6[0-3|9]|7[0-7]|8[0-9]|9[0-4|6|7|9])|3[2-9]|5[5|6|8|9]|7[0|6-9]|8[0-6|8|9]|9[0-4|6-9])([0-9]{7})$/
 export const b64EncodeUnicode = (str) => window.btoa(str)
 
 // window.btoa(
@@ -35,6 +42,10 @@ export const b64EncodeUnicode = (str) => window.btoa(str)
 // );
 export const modifyTime = (string) => {
     return moment(string).format('DD MMM, YYYY')
+}
+
+export const modifyTimeOrderTable = (string) => {
+    return moment(string).format('DD/MM/YYYY')
 }
 
 

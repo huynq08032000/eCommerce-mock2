@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit"
-import axios from "axios"
+import { createSlice } from "@reduxjs/toolkit"
+import { toast } from "react-toastify"
+import { toastCss } from "../Components/StyleComponent/StyleComponent"
 import { findIndex } from "../ultis/ultis"
 
 const initState = {
@@ -24,6 +25,10 @@ const UserSlice = createSlice({
             state.cart = []
         },
         addCart: (state, action) => {
+            if (state.user.id === undefined) {
+                toast.error('Login before choose product', toastCss)
+                return
+            }
             const index = findIndex(state.cart, action.payload)
             if (index === -1) {
                 state.cart.push(action.payload)
@@ -45,6 +50,9 @@ const UserSlice = createSlice({
                 const index = findIndex(state.cart, action.payload)
                 state.cart[index].quantity -= 1
             }
+        },
+        setCart: (state, action) => {
+            state.cart = action.payload
         }
     },
     extraReducers: (builder) => {
@@ -52,5 +60,5 @@ const UserSlice = createSlice({
     }
 })
 
-export const { setUser, clearUser, setDeviceId, addCart, removeCart, increaseQuantity, decreaseQuantity } = UserSlice.actions;
+export const { setUser, clearUser, setDeviceId, addCart, removeCart, increaseQuantity, decreaseQuantity, setCart } = UserSlice.actions;
 export default UserSlice.reducer;

@@ -5,7 +5,6 @@ import { access_token, access_token_time, deviceId, getLocalStrogageByKey, isExp
 const axiosInstance = axios.create({
     baseURL: urlApi,
     headers: {
-        'Authorization': `Bearer ` + getLocalStrogageByKey(access_token),
         'Content-Type': 'application/json',
     }
 });
@@ -15,7 +14,10 @@ axiosInstance.interceptors.request.use(async (req) => {
     const accessTokenTime = getLocalStrogageByKey(access_token_time)
     const refreshTokenTime = getLocalStrogageByKey(refresh_token_time)
     const deviceId2 = getLocalStrogageByKey(deviceId)
-    if (isExpried(accessTokenTime)) return req
+    if (isExpried(accessTokenTime)) {
+        req.headers.Authorization = `Bearer ${accessToken}`
+        return req
+    }
     if (isExpried(refreshTokenTime)) {
         try {
             const res = await axios.post(refreshTokenApi, {

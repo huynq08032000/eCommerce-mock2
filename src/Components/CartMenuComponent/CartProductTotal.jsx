@@ -20,7 +20,7 @@ const CartProductTotal = ({ style }) => {
             </div>
             <div className="carttotal-item total" style={style}>
                 <div><Typography fontWeight={700} fontSize={style === undefined ? 18 : style.fontSize}>Total</Typography></div>
-                <div><Typography fontWeight={700} fontSize={style === undefined ? 18 : style.fontSize} color={'#727070'}>{subTotal + shippingPrice}</Typography></div>
+                <div><Typography fontWeight={700} fontSize={style === undefined ? 18 : style.fontSize} color={'#727070'}>${subTotal + shippingPrice}</Typography></div>
             </div>
         </>
     )

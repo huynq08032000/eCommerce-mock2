@@ -147,7 +147,7 @@ const HeaderComponent = () => {
                         <div className="child-items">
                             {user.id ? <><Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                    <Avatar alt={modifyLetter(user.username)} src={user.avatar !== null ? user.avatar : '/static/images/avatar/2.jpg'} />
+                                    <Avatar alt={modifyLetter(user.username)} src={user.avatar} />
                                 </IconButton>
                             </Tooltip>
                                 <Menu
