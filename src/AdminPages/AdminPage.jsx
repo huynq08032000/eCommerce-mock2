@@ -227,7 +227,10 @@ const AdminPage = ({ component }) => {
                     {leftSideLink.map((el, index) => (
                         <ListItem key={el.label} disablePadding sx={{ display: 'block' }}>
                             {el.child ? <>
-                                <ListItemButton onClick={() => { el.onClick(!el.openCollapse) }} >
+                                <ListItemButton onClick={() => {
+                                    setOpen(true)
+                                    el.onClick(!el.openCollapse)
+                                }} >
                                     <ListItemIcon>
                                         {el.icon}
                                     </ListItemIcon>
@@ -236,7 +239,7 @@ const AdminPage = ({ component }) => {
                                 </ListItemButton>
                                 <Collapse in={el.openCollapse} timeout="auto" unmountOnExit>
                                     {el.child.map((el, index) => (
-                                        <List component="div" disablePadding>
+                                        <List component="div" disablePadding key={el.label}>
                                             <ListItemButton sx={{ pl: 4 }} className={addActive(el.href)} onClick={() => navigate(el.href)}>
                                                 <ListItemText primary={el.label} sx={{ padding: '0px 40px' }} />
                                             </ListItemButton>
