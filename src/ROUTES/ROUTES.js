@@ -8,6 +8,7 @@ const MyProfilePage = lazy(() => import('../Pages/MyAccountPage/MyProfilePage'))
 const OrderHistoryPage = lazy(() => import('../Pages/MyAccountPage/OrderHistoryPage'))
 const DashboradPage = lazy(() => import('../AdminPages/DashboardPage/DashboradPage'))
 const ProductListPage = lazy(() => import('../AdminPages/ProductPage/ProductListPage'))
+const ProductAddPage = lazy(() => import('../AdminPages/ProductPage/ProductAddPage'))
 export const ROUTES = [
     {
         path: '/',
@@ -45,6 +46,11 @@ export const ROUTES = [
     {
         path: '/productList',
         component: <ProductListPage />,
+        role: ['admin']
+    },
+    {
+        path: '/addProduct',
+        component: <ProductAddPage />,
         role: ['admin']
     }
 ]

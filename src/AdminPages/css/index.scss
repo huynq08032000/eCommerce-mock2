@@ -68,7 +68,7 @@ input {
 
 .table-container {
     height: 450px;
-    overflow-y: scroll;
+    overflow-y: auto;
 
     table {
         font-family: arial, sans-serif;

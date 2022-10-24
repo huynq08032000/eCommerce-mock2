@@ -9,12 +9,13 @@ import axios from "axios";
 import { getAllProducts, searchProductsApi } from "../../../config/api";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import _ from "lodash";
-import { values } from "lodash";
+import { useNavigate } from "react-router-dom";
 const styleTyph = {
     fontSize: '20px',
     fontWeight: '400'
 }
 const ProductListComponent = () => {
+    const navigate = useNavigate()
     const [searchInput, setSearchInput] = useState('')
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
@@ -100,7 +101,7 @@ const ProductListComponent = () => {
             <AdminCustomSeparator breadcums={[{ label: 'Product' }]} />
             <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%' }}>
                 <Typography fontSize={35} fontWeight={600}>Product</Typography>
-                <Button sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }}>New product</Button>
+                <Button sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={() => navigate('/addProduct')}>New product</Button>
             </div>
             <div className="boxShadow" style={{ width: '100%', height: '70vh', marginTop: '30px', maxWidth: '100%' }}>
                 <div style={{ padding: '25px 15px 20px 15px', width: '100%' }}>
