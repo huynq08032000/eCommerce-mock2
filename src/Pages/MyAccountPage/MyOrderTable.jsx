@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, CircularProgress, Pagination, Typography } from "@mui/material";
+import { Pagination, Typography } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -13,6 +13,7 @@ import './css/index.scss'
 import axiosInstance from "../../ultis/customAxios";
 import { getMyOrdersApi } from "../../config/api";
 import { modifyTimeOrderTable } from "../../ultis/ultis";
+import LoadingComponent from "../../Components/LoadingComponent/LoadingComponent";
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
         backgroundColor: "#C4C4C4",
@@ -69,9 +70,7 @@ const MyOrderTable = ({ label }) => {
                 <Typography fontWeight={700} fontSize={28}>{label}</Typography>
             </div>
             <div className="order-table">
-                {loading ? <Box sx={{ display: "flex", justifyContent: "center", width: "100%" }}>
-                    <CircularProgress />
-                </Box> : <>
+                {loading ? <LoadingComponent /> : <>
                     <TableContainer component={Paper}>
                         <Table sx={{ minWidth: 700, maxHeight: '300px' }} aria-label="customized table">
                             <TableHead>
