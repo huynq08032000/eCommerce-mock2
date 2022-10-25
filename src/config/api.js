@@ -11,6 +11,9 @@ export const changeContactApi = `${urlApi}/v1/users/change-contact`
 export const changeEmailApi = `${urlApi}/v1/users/change-email`
 export const changeUsernameApi = `${urlApi}/v1/users/change-username`
 
+export const uploadApi = `${urlApi}/v1/uploads`
 export const createOrderApi = `${urlApi}/v1/orders`
 export const getMyOrdersApi = `${urlApi}/v1/orders/my-orders`
+
 export const apiGetProductById = `${urlApi}/v1/products/`
+export const createProduct = `${urlApi}/v1/products `

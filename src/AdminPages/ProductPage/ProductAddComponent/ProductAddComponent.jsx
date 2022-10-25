@@ -4,12 +4,16 @@ import AdminCustomSeparator from "../../AdminComponents/AdminBreadCrumbsComponen
 import ProductCreateComponent from "./ProductCreateComponent";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import axios from "axios";
-import { getAllCategories } from "../../../config/api";
+import { createProduct, getAllCategories, uploadApi } from "../../../config/api";
 import { modifyLetter, regexStock } from "../../../ultis/ultis";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import ClearIcon from '@mui/icons-material/Clear';
 import { useFormik } from "formik";
 import * as yup from "yup";
+import { toast } from "react-toastify";
+import { toastCss } from "../../../Components/StyleComponent/StyleComponent";
+import axiosInstance from "../../../ultis/customAxios";
+import { LoadingButton } from "@mui/lab";
 
 const validationSchema = yup.object({
     name: yup
@@ -25,30 +29,56 @@ const validationSchema = yup.object({
     brand: yup
         .string("Enter brand")
         .required("Brand is required"),
-    stock: yup
+    countInStock: yup
         .string("Enter number")
         .matches(regexStock, "Stock is invalid")
         .required("Stock is required"),
 });
 const ProductAddComponent = () => {
+    const [loadingAdd, setLoadingAdd] = useState(false)
+    const [image, setImage] = useState('')
     const [valueCate, setValues] = useState([])
     const [rating, setRating] = useState(1)
     const [options, setOption] = useState([])
     const [loading, setLoading] = useState(false)
+    const [loadingUpload, setLoadingUpload] = useState(false)
     const formik = useFormik({
         initialValues: {
             name: "",
             description: "",
             price: '',
             brand: '',
-            stock: ''
+            countInStock: ''
         },
         validationSchema: validationSchema,
         onSubmit: (values) => {
-            console.log(values)
-            console.log(valueCate)
+            if (valueCate.length !== 1) {
+                toast.warning('Categories need to have only one value', toastCss)
+                return;
+            }
+            if (image === '') {
+                toast.warning('Image cant be empty', toastCss)
+                return;
+            }
+            const addValues = { ...values }
+            addValues.category = valueCate[0].value
+            addValues.imageUrls = [image]
+            addValues.rating = rating
+            handleAdd(addValues)
         }
     });
+    const handleAdd = async (addValues) => {
+        setLoadingAdd(true)
+        try {
+            const res = await axiosInstance.post(createProduct, addValues)
+            toast.success(res.data.message, toastCss)
+            formik.resetForm()
+            setImage('')
+        } catch (err) {
+            console.log(err)
+        }
+        setLoadingAdd(false)
+    }
     const fetchCate = async () => {
         setLoading(true)
         try {
@@ -72,12 +102,27 @@ const ProductAddComponent = () => {
         const arr = valueCate.filter(el => el.value !== option.value)
         setValues(arr)
     }
+    const handleUploadFile = async (e) => {
+        setLoadingUpload(true)
+        let formData = new FormData()
+        formData.append('image', e.target.files[0], e.target.files[0].name)
+        try {
+            const res = await axiosInstance.post(uploadApi, formData, {
+                headers: { "Content-Type": "multipart/form-data" }
+            })
+            setImage(res.data.data.imageURL)
+            toast.success(res.data.message, toastCss)
+        } catch (error) {
+            console.log(error)
+        }
+        setLoadingUpload(false)
+    }
     return (
         <>
             <AdminCustomSeparator breadcums={[{ label: 'Product', href: '/productList' }, { label: 'Create product' }]} />
             <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%' }}>
                 <Typography fontSize={35} fontWeight={600}>Create Product</Typography>
-                <Button sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={formik.handleSubmit}>Add product</Button>
+                <LoadingButton loading={loadingAdd} sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={formik.handleSubmit}>Add product</LoadingButton>
             </div>
             <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px 0px 25px', }}>
                 <div>
@@ -142,25 +187,29 @@ const ProductAddComponent = () => {
                         <div className="input-wrapper" style={{ marginBottom: '20px' }}>
                             <Typography fontSize={18} fontWeight={700}>Stock Quality</Typography>
                             <TextField
-                                value={formik.values.stock}
-                                name='stock'
+                                value={formik.values.countInStock}
+                                name='countInStock'
                                 onChange={formik.handleChange}
                                 size="small"
                                 fullWidth
                             />
-                            {formik.errors.stock && <Typography color='red'>{formik.errors.stock}</Typography>}
+                            {formik.errors.countInStock && <Typography color='red'>{formik.errors.countInStock}</Typography>}
                         </div>
                     </ProductCreateComponent>
                 </div>
                 <div>
                     <ProductCreateComponent label={'Images'} style={{ width: '431px', height: '260px' }}>
                         <div style={{ height: '100px', textAlign: 'center' }}>
-                            <UploadFileIcon sx={{ height: '92px', width: '77px' }} />
+                            {loadingUpload ? <><LoadingComponent /></> : <>
+                                {image === '' ? <UploadFileIcon sx={{ height: '92px', width: '77px' }} /> : <>
+                                    <img style={{ height: '92px', width: '77px' }} src={`${image}`} />
+                                </>}
+                            </>}
                         </div>
                         <div className="input-wrapper" style={{ marginTop: '30px', width: '100%', border: '1px solid #929395', borderRadius: '2px' }}>
                             <Button variant="contained" component="label" sx={{ borderRadius: '2px', background: '#C4CDD5' }}>
                                 Upload
-                                <input hidden accept="image/*" multiple type="file" />
+                                <input hidden accept="image/*" multiple type="file" onChange={handleUploadFile} />
                             </Button>
                         </div>
                     </ProductCreateComponent>

@@ -22,6 +22,7 @@ const ProductListComponent = () => {
     const [size, setSize] = useState(10)
     const [totalPages, setTotalPages] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
+    const [image, setImage] = useState('')
     const fetchData = async () => {
         setLoading(true)
         try {
