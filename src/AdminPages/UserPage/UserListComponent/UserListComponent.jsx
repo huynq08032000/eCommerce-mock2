@@ -94,9 +94,9 @@ const UserListComponent = () => {
     }, [handleSearchDebounce]);
     return (
         <>
-            <AdminCustomSeparator breadcums={[{ label: 'Product' }]} />
+            <AdminCustomSeparator breadcums={[{ label: 'User' }]} />
             <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%' }}>
-                <Typography fontSize={35} fontWeight={600}>Product</Typography>
+                <Typography fontSize={35} fontWeight={600}>User</Typography>
                 <Button sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={() => navigate('/addUser')}>New user</Button>
             </div>
             <div className="boxShadow" style={{ width: '100%', height: '70vh', marginTop: '30px', maxWidth: '100%' }}>
