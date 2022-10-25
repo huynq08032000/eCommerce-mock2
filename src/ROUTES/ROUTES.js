@@ -10,6 +10,7 @@ const DashboradPage = lazy(() => import('../AdminPages/DashboardPage/DashboradPa
 const ProductListPage = lazy(() => import('../AdminPages/ProductPage/ProductListPage'))
 const ProductAddPage = lazy(() => import('../AdminPages/ProductPage/ProductAddPage'))
 const ProductEditPage = lazy(() => import('../AdminPages/ProductPage/ProductEditPage'))
+const UserListPage = lazy(() => import('../AdminPages/UserPage/UserListPage'))
 export const ROUTES = [
     {
         path: '/',
@@ -57,6 +58,11 @@ export const ROUTES = [
     {
         path: '/editProduct/:id',
         component: <ProductEditPage />,
+        role: ['admin']
+    },
+    {
+        path: '/userList',
+        component: <UserListPage />,
         role: ['admin']
     }
 ]

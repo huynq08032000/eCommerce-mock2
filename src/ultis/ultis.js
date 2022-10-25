@@ -5,6 +5,23 @@ export const access_token_time = 'access_token_time'
 export const refresh_token_time = 'refresh_token_time'
 export const deviceId = 'deviceId'
 
+export const colorWithRole = (role) => {
+    switch (role) {
+        case 'user':
+            return {
+                bgcolor: 'red',
+                color: '#ffffff',
+            }
+        case 'admin': {
+            return {
+                bgcolor: 'green',
+                color: '#ffffff'
+            }
+        }
+        default:
+            break;
+    }
+}
 export const findIndex = (arr, payload) => {
     return arr.findIndex(el => el.id === payload.id)
 }
