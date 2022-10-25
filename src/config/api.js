@@ -20,3 +20,5 @@ export const createProduct = `${urlApi}/v1/products`
 export const deleteProduct = `${urlApi}/v1/products/`
 export const updateProduct = `${urlApi}/v1/products/`
 export const updateMedia = `${urlApi}/v1/media/`
+
+export const queryUser = `${urlApi}/v1/users`
