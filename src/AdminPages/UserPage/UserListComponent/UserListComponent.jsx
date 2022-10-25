@@ -5,21 +5,20 @@ import '../../css/index.scss'
 import SearchIcon from '@mui/icons-material/Search';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EditIcon from '@mui/icons-material/Edit';
-import axios from "axios";
-import { getAllProducts, queryUser, searchProductsApi } from "../../../config/api";
+import { queryUser } from "../../../config/api";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import _ from "lodash";
 import { useNavigate } from "react-router-dom";
-import AdminModalDelete from "../../AdminComponents/AdminModalDelete/AdminModalDelete";
 import axiosInstance from "../../../ultis/customAxios";
 import { colorWithRole, modifyLetter } from "../../../ultis/ultis";
+import AdminUserModalDelete from "../../AdminComponents/AdminModalDelete/AdminUserModalDelete";
 const styleTyph = {
     fontSize: '20px',
     fontWeight: '400'
 }
 const UserListComponent = () => {
     const navigate = useNavigate()
-    const [productId, setProductId] = useState(0)
+    const [userId, setUserId] = useState(0)
     const [open, setOpen] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     const [loading, setLoading] = useState(false)
@@ -94,9 +93,9 @@ const UserListComponent = () => {
     }, [handleSearchDebounce]);
     return (
         <>
-            <AdminCustomSeparator breadcums={[{ label: 'Product' }]} />
+            <AdminCustomSeparator breadcums={[{ label: 'User' }]} />
             <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%' }}>
-                <Typography fontSize={35} fontWeight={600}>Product</Typography>
+                <Typography fontSize={35} fontWeight={600}>User</Typography>
                 <Button sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={() => navigate('/addUser')}>New user</Button>
             </div>
             <div className="boxShadow" style={{ width: '100%', height: '70vh', marginTop: '30px', maxWidth: '100%' }}>
@@ -132,14 +131,13 @@ const UserListComponent = () => {
                                             <div style={{ margin: '5px 10px 0 0 ' }}>
                                                 <Avatar style={{ width: '60px', height: '60px', boxShadow: '0.5px 0.5px 12px rgba(0, 0, 0, 0.25)', borderRadius: '0' }} src={el.avatar} />
                                             </div>
-                                            <div style={{ width: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                            <div style={{ width: '250px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    <Typography style={styleTyph}>{el.username}</Typography>
-                                                    <div style={{ borderRadius: '10px', padding: '5px 20px', background: `${colorWithRole(el.role).bgcolor}` }}>
+                                                    <Typography style={styleTyph} width={100} height={34} overflow={'hidden'}>{el.username}</Typography>
+                                                    <div style={{ height: '34px', borderRadius: '10px', padding: '5px 20px', background: `${colorWithRole(el.role).bgcolor}` }}>
                                                         <Typography color={colorWithRole(el.role).color}>{modifyLetter(el.role)}</Typography>
                                                     </div>
                                                 </div>
-
                                                 <Typography color={'#3D464D'}>{el.email}</Typography>
                                             </div>
                                         </div>
@@ -154,7 +152,7 @@ const UserListComponent = () => {
                                                 <EditIcon sx={{ color: 'green' }} />
                                             </IconButton>
                                             <IconButton aria-label="delete" size="small" onClick={() => {
-                                                setProductId(el.id)
+                                                setUserId(el.id)
                                                 setOpen(true)
                                             }}>
                                                 <DeleteIcon sx={{ color: 'red' }} />
@@ -188,7 +186,7 @@ const UserListComponent = () => {
                         </FormControl>
                     </div>
                 </div>
-                <AdminModalDelete isDelete={isDelete} setIsDelete={setIsDelete} open={open} setOpen={setOpen} productId={productId} />
+                <AdminUserModalDelete isDelete={isDelete} setIsDelete={setIsDelete} open={open} setOpen={setOpen} userId={userId} />
             </div>
         </>
     )
