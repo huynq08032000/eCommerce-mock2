@@ -17,6 +17,7 @@ const styleTyph = {
     fontWeight: '400'
 }
 const UserListComponent = () => {
+    const [order, setOrder] = useState({ sortBy: '', order: 'ASC' })
     const navigate = useNavigate()
     const [userId, setUserId] = useState(0)
     const [open, setOpen] = useState(false)
@@ -29,12 +30,17 @@ const UserListComponent = () => {
     const [isDelete, setIsDelete] = useState(false)
     const fetchData = async () => {
         setLoading(true)
+        const paramSearch = {
+            size: size,
+            page: currentPage
+        }
+        if (order.sortBy !== '') {
+            paramSearch.sortBy = order.sortBy
+            paramSearch.order = order.order
+        }
         try {
             const res = await axiosInstance.get(queryUser, {
-                params: {
-                    size: size,
-                    page: currentPage
-                }
+                params: paramSearch
             })
             setTotalPages(res.data.data.totalPages)
             setData(res.data.data.result)
@@ -42,6 +48,14 @@ const UserListComponent = () => {
             console.log(error)
         }
         setLoading(false)
+    }
+    const handleOrder = (value) => {
+        if (value === order.sortBy) {
+            if (order.order === 'ASC') setOrder({ ...order, order: 'DESC' })
+            else setOrder({ ...order, order: 'ASC' })
+        } else {
+            setOrder({ ...order, sortBy: value, order: 'ASC' })
+        }
     }
     const handleSearchDebounce = useRef(_.debounce(async (value) => {
         // setLoading(true)
@@ -84,7 +98,7 @@ const UserListComponent = () => {
     useEffect(() => {
         fetchData()
         setIsDelete(false)
-    }, [currentPage, size, isDelete])
+    }, [currentPage, size, isDelete, order])
 
     useEffect(() => {
         return () => {
@@ -115,12 +129,12 @@ const UserListComponent = () => {
                     {loading ? <LoadingComponent /> : <>
                         <table>
                             <tr>
-                                <th style={{ width: '5%', textAlign: 'center' }}>ID</th>
-                                <th style={{ width: '25%', padding: '0 20px' }}>User</th>
-                                <th style={{ width: '20%', textAlign: 'center' }}>Contact</th>
-                                <th style={{ width: '15%' }}>Status</th>
-                                <th style={{ width: '15%' }}>Verify Email</th>
-                                <th style={{ width: '10%' }}>Verify Contact</th>
+                                <th style={{ width: '5%', textAlign: 'center' }} onClick={() => handleOrder('id')}>ID</th>
+                                <th style={{ width: '25%', padding: '0 20px' }} onClick={() => handleOrder('username')}>User</th>
+                                <th style={{ width: '20%', textAlign: 'center' }} onClick={() => handleOrder('contact')}>Contact</th>
+                                <th style={{ width: '15%' }} onClick={() => handleOrder('isActive')}>Status</th>
+                                <th style={{ width: '15%' }} onClick={() => handleOrder('isEmailVerified')}>Verify Email</th>
+                                <th style={{ width: '10%' }} onClick={() => handleOrder('isContactVerified')}>Verify Contact</th>
                                 <th></th>
                             </tr>
                             {data.map((el, index) => (
