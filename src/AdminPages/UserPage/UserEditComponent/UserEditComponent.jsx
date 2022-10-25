@@ -2,8 +2,7 @@ import { Avatar, Button, FormControl, FormControlLabel, MenuItem, Radio, RadioGr
 import React, { useEffect, useRef, useState } from "react";
 import AdminCustomSeparator from "../../AdminComponents/AdminBreadCrumbsComponent/AdminCustomSeparator";
 import ProductCreateComponent from "../../ProductPage/ProductAddComponent/ProductCreateComponent";
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { createProduct, createUser, getUserByID, updateUser, uploadApi } from "../../../config/api";
+import { getUserByID, updateUser, uploadApi } from "../../../config/api";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -13,7 +12,6 @@ import axiosInstance from "../../../ultis/customAxios";
 import { LoadingButton } from "@mui/lab";
 import { regexContact, regexEmail } from "../../../ultis/ultis";
 import { useParams } from "react-router-dom";
-import { add } from "lodash";
 
 const validationSchema = yup.object({
     username: yup
@@ -38,6 +36,7 @@ const UserEditComponent = () => {
     const [verifyContact, setVerifyContact] = useState(false)
     const [loading, setLoading] = useState(false)
     const emailCurrent = useRef()
+    const contactCurrent = useRef()
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -59,7 +58,8 @@ const UserEditComponent = () => {
             }
             if (addValues.contact === '') delete addValues.contact
             if (emailCurrent.current === values.email) delete addValues.email
-            if (image !== '') addValues.avatar = image
+            if (contactCurrent.current === values.contact) delete addValues.contact
+            if (image !== '' && image != null) addValues.avatar = image
             handleUpdate(addValues)
         }
     });
@@ -96,6 +96,7 @@ const UserEditComponent = () => {
             if (result.contact === null) result.contact = ''
             formik.setValues(result)
             emailCurrent.current = result.email
+            contactCurrent.current = result.contact
             setImage(res.data.data.avatar)
             setStatus(res.data.data.isActive)
             setVerifyEmail(res.data.data.isEmailVerified)
