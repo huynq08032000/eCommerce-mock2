@@ -10,12 +10,15 @@ import { getAllProducts, searchProductsApi } from "../../../config/api";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import _ from "lodash";
 import { useNavigate } from "react-router-dom";
+import AdminModalDelete from "../../AdminComponents/AdminModalDelete/AdminModalDelete";
 const styleTyph = {
     fontSize: '20px',
     fontWeight: '400'
 }
 const ProductListComponent = () => {
     const navigate = useNavigate()
+    const [productId, setProductId] = useState(0)
+    const [open, setOpen] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
@@ -23,6 +26,7 @@ const ProductListComponent = () => {
     const [totalPages, setTotalPages] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
     const [image, setImage] = useState('')
+    const [isDelete, setIsDelete] = useState(false)
     const fetchData = async () => {
         setLoading(true)
         try {
@@ -91,7 +95,8 @@ const ProductListComponent = () => {
     }
     useEffect(() => {
         fetchData()
-    }, [currentPage, size])
+        setIsDelete(false)
+    }, [currentPage, size, isDelete])
 
     useEffect(() => {
         return () => {
@@ -155,7 +160,10 @@ const ProductListComponent = () => {
                                             <IconButton aria-label="edit" size="small">
                                                 <EditIcon sx={{ color: 'green' }} />
                                             </IconButton>
-                                            <IconButton aria-label="delete" size="small">
+                                            <IconButton aria-label="delete" size="small" onClick={() => {
+                                                setProductId(el.id)
+                                                setOpen(true)
+                                            }}>
                                                 <DeleteIcon sx={{ color: 'red' }} />
                                             </IconButton>
                                         </Stack>
@@ -187,6 +195,7 @@ const ProductListComponent = () => {
                         </FormControl>
                     </div>
                 </div>
+                <AdminModalDelete isDelete={isDelete} setIsDelete={setIsDelete} open={open} setOpen={setOpen} productId={productId} />
             </div>
         </>
     )

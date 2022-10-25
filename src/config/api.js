@@ -16,4 +16,5 @@ export const createOrderApi = `${urlApi}/v1/orders`
 export const getMyOrdersApi = `${urlApi}/v1/orders/my-orders`
 
 export const apiGetProductById = `${urlApi}/v1/products/`
-export const createProduct = `${urlApi}/v1/products `
+export const createProduct = `${urlApi}/v1/products`
+export const deleteProduct = `${urlApi}/v1/products/`
