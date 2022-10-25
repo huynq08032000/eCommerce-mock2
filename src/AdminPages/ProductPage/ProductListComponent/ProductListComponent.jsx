@@ -52,6 +52,7 @@ const ProductListComponent = () => {
     }
     const handleSearchDebounce = useRef(_.debounce(async (value) => {
         setLoading(true)
+        setCurrentPage(1)
         try {
             if (value === '') {
                 const res = await axios.get(getAllProducts, {
@@ -168,7 +169,7 @@ const ProductListComponent = () => {
                     <Pagination count={totalPages} variant="outlined" shape="rounded" onChange={(e, number) => {
                         setCurrentPage(number)
                     }} />
-                    <div style={{ display: 'flex', alignItems : 'center' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Typography style={styleTyph}>Items per page</Typography>
                         <FormControl >
                             <Select
