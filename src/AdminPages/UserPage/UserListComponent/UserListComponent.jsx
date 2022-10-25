@@ -132,14 +132,13 @@ const UserListComponent = () => {
                                             <div style={{ margin: '5px 10px 0 0 ' }}>
                                                 <Avatar style={{ width: '60px', height: '60px', boxShadow: '0.5px 0.5px 12px rgba(0, 0, 0, 0.25)', borderRadius: '0' }} src={el.avatar} />
                                             </div>
-                                            <div style={{ width: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                            <div style={{ width: '250px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    <Typography style={styleTyph}>{el.username}</Typography>
-                                                    <div style={{ borderRadius: '10px', padding: '5px 20px', background: `${colorWithRole(el.role).bgcolor}` }}>
+                                                    <Typography style={styleTyph} width={100} height={34} overflow={'hidden'}>{el.username}</Typography>
+                                                    <div style={{ height : '34px',borderRadius: '10px', padding: '5px 20px', background: `${colorWithRole(el.role).bgcolor}` }}>
                                                         <Typography color={colorWithRole(el.role).color}>{modifyLetter(el.role)}</Typography>
                                                     </div>
                                                 </div>
-
                                                 <Typography color={'#3D464D'}>{el.email}</Typography>
                                             </div>
                                         </div>
