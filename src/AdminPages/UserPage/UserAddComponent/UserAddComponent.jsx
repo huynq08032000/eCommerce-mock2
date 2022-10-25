@@ -113,7 +113,7 @@ const UserAddComponent = () => {
                                 size="small"
                                 fullWidth
                             />
-                            {formik.errors.name && <Typography color='red'>{formik.errors.name}</Typography>}
+                            {formik.errors.username && <Typography color='red'>{formik.errors.username}</Typography>}
                         </div>
                         <div className="input-wrapper" style={{ marginBottom: '20px' }}>
                             <Typography fontSize={18} fontWeight={700}>Email</Typography>
