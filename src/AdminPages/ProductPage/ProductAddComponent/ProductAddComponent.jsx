@@ -202,7 +202,7 @@ const ProductAddComponent = () => {
                         <div style={{ height: '100px', textAlign: 'center' }}>
                             {loadingUpload ? <><LoadingComponent /></> : <>
                                 {image === '' ? <UploadFileIcon sx={{ height: '92px', width: '77px' }} /> : <>
-                                    <img style={{ height: '92px', width: '77px' }} src={`${image}`} />
+                                    <img style={{ height: '100px', width: '100px' }} src={`${image}`} />
                                 </>}
                             </>}
                         </div>

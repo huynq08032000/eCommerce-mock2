@@ -9,6 +9,7 @@ const OrderHistoryPage = lazy(() => import('../Pages/MyAccountPage/OrderHistoryP
 const DashboradPage = lazy(() => import('../AdminPages/DashboardPage/DashboradPage'))
 const ProductListPage = lazy(() => import('../AdminPages/ProductPage/ProductListPage'))
 const ProductAddPage = lazy(() => import('../AdminPages/ProductPage/ProductAddPage'))
+const ProductEditPage = lazy(() => import('../AdminPages/ProductPage/ProductEditPage'))
 export const ROUTES = [
     {
         path: '/',
@@ -51,6 +52,11 @@ export const ROUTES = [
     {
         path: '/addProduct',
         component: <ProductAddPage />,
+        role: ['admin']
+    },
+    {
+        path: '/editProduct/:id',
+        component: <ProductEditPage />,
         role: ['admin']
     }
 ]

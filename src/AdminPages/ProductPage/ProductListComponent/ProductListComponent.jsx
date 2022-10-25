@@ -157,7 +157,7 @@ const ProductListComponent = () => {
                                     <td style={{ width: '15%', textAlign: 'center' }}><Rating name="half-rating-read" value={el.rating} precision={0.5} readOnly /></td>
                                     <td>
                                         <Stack direction="row" alignItems="center" spacing={'1px'}>
-                                            <IconButton aria-label="edit" size="small">
+                                            <IconButton aria-label="edit" size="small" onClick={() => navigate(`/editProduct/${el.id}`)}>
                                                 <EditIcon sx={{ color: 'green' }} />
                                             </IconButton>
                                             <IconButton aria-label="delete" size="small" onClick={() => {
