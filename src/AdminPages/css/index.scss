@@ -8,7 +8,7 @@
 
 .css-zxdg2z {
     background-color: #F5F7FA;
-    height: 100vh;
+    min-height: 100vh;
 }
 
 .css-16ac5r2-MuiButtonBase-root-MuiListItemButton-root,
@@ -96,8 +96,4 @@ input {
             }
         }
     }
-}
-
-.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input{
-    padding : 5px 32px 5px 5px!important;
 }

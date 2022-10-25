@@ -10,18 +10,23 @@ import { getAllProducts, searchProductsApi } from "../../../config/api";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import _ from "lodash";
 import { useNavigate } from "react-router-dom";
+import AdminModalDelete from "../../AdminComponents/AdminModalDelete/AdminModalDelete";
 const styleTyph = {
     fontSize: '20px',
     fontWeight: '400'
 }
 const ProductListComponent = () => {
     const navigate = useNavigate()
+    const [productId, setProductId] = useState(0)
+    const [open, setOpen] = useState(false)
     const [searchInput, setSearchInput] = useState('')
     const [loading, setLoading] = useState(false)
     const [data, setData] = useState([])
     const [size, setSize] = useState(10)
     const [totalPages, setTotalPages] = useState(1)
     const [currentPage, setCurrentPage] = useState(1)
+    const [image, setImage] = useState('')
+    const [isDelete, setIsDelete] = useState(false)
     const fetchData = async () => {
         setLoading(true)
         try {
@@ -52,6 +57,7 @@ const ProductListComponent = () => {
     }
     const handleSearchDebounce = useRef(_.debounce(async (value) => {
         setLoading(true)
+        setCurrentPage(1)
         try {
             if (value === '') {
                 const res = await axios.get(getAllProducts, {
@@ -89,7 +95,8 @@ const ProductListComponent = () => {
     }
     useEffect(() => {
         fetchData()
-    }, [currentPage, size])
+        setIsDelete(false)
+    }, [currentPage, size, isDelete])
 
     useEffect(() => {
         return () => {
@@ -150,10 +157,13 @@ const ProductListComponent = () => {
                                     <td style={{ width: '15%', textAlign: 'center' }}><Rating name="half-rating-read" value={el.rating} precision={0.5} readOnly /></td>
                                     <td>
                                         <Stack direction="row" alignItems="center" spacing={'1px'}>
-                                            <IconButton aria-label="edit" size="small">
+                                            <IconButton aria-label="edit" size="small" onClick={() => navigate(`/editProduct/${el.id}`)}>
                                                 <EditIcon sx={{ color: 'green' }} />
                                             </IconButton>
-                                            <IconButton aria-label="delete" size="small">
+                                            <IconButton aria-label="delete" size="small" onClick={() => {
+                                                setProductId(el.id)
+                                                setOpen(true)
+                                            }}>
                                                 <DeleteIcon sx={{ color: 'red' }} />
                                             </IconButton>
                                         </Stack>
@@ -168,10 +178,11 @@ const ProductListComponent = () => {
                     <Pagination count={totalPages} variant="outlined" shape="rounded" onChange={(e, number) => {
                         setCurrentPage(number)
                     }} />
-                    <div style={{ display: 'flex' }}>
+                    <div style={{ display: 'flex', alignItems: 'center' }}>
                         <Typography style={styleTyph}>Items per page</Typography>
-                        <FormControl sx={{ padding: '0', height: '25px' }}>
+                        <FormControl >
                             <Select
+                                sx={{ padding: '0', height: '25px' }}
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
                                 value={size}
@@ -184,6 +195,7 @@ const ProductListComponent = () => {
                         </FormControl>
                     </div>
                 </div>
+                <AdminModalDelete isDelete={isDelete} setIsDelete={setIsDelete} open={open} setOpen={setOpen} productId={productId} />
             </div>
         </>
     )
