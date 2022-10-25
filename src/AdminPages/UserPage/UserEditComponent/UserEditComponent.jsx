@@ -59,6 +59,7 @@ const UserEditComponent = () => {
             }
             if (addValues.contact === '') delete addValues.contact
             if (emailCurrent.current === values.email) delete addValues.email
+            if (image !== '') addValues.avatar = image
             handleUpdate(addValues)
         }
     });

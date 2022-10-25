@@ -87,7 +87,6 @@ const ModalEditProfile = ({ open, setOpen }) => {
                 toast.error(error.response.data.message, toastCss)
             }
         setLoading(false)
-        handleClose()
     }
     const myHandleChange = (e) => {
         formik.handleChange(e)

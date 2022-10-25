@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use(async (req) => {
     const refreshTokenTime = getLocalStrogageByKey(refresh_token_time)
     const deviceId2 = getLocalStrogageByKey(deviceId)
     if (isExpried(accessTokenTime)) {
-        req.headers.Authorization = `Bearer ${accessToken}`
+        req.headers.Authorization = `Bearer ` + accessToken
         return req
     }
     if (isExpried(refreshTokenTime)) {
@@ -28,7 +28,7 @@ axiosInstance.interceptors.request.use(async (req) => {
             setLocalStorageKey(access_token_time, res.data.data.access.expires)
             setLocalStorageKey(refresh_token, res.data.data.refresh.token)
             setLocalStorageKey(refresh_token_time, res.data.data.refresh.expires)
-            req.headers.Authorization = `Bearer ${res.data.data.access.token}`
+            req.headers.Authorization = `Bearer ` + res.data.data.access.token
             return req
         } catch (error) {
             return Promise.reject(error);

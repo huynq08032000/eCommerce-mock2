@@ -17,6 +17,7 @@ const styleTyph = {
 }
 const ProductListComponent = () => {
     const navigate = useNavigate()
+    const [order, setOrder] = useState({ sortBy: '', order: 'ASC' })
     const [productId, setProductId] = useState(0)
     const [open, setOpen] = useState(false)
     const [searchInput, setSearchInput] = useState('')
@@ -31,21 +32,31 @@ const ProductListComponent = () => {
         setLoading(true)
         try {
             if (searchInput === '') {
+                const paramSearch = {
+                    size: size,
+                    page: currentPage
+                }
+                if (order.sortBy !== '') {
+                    paramSearch.sortBy = order.sortBy
+                    paramSearch.order = order.order
+                }
                 const res = await axios.get(getAllProducts, {
-                    params: {
-                        size: size,
-                        page: currentPage
-                    }
+                    params: paramSearch
                 })
                 setTotalPages(res.data.data.totalPages)
                 setData(res.data.data.result)
             } else {
+                const paramSearch = {
+                    keyword: searchInput,
+                    size: size,
+                    page: currentPage
+                }
+                if (order.sortBy !== '') {
+                    paramSearch.sortBy = order.sortBy
+                    paramSearch.order = order.order
+                }
                 const res = await axios.get(searchProductsApi, {
-                    params: {
-                        keyword: searchInput,
-                        size: size,
-                        page: currentPage
-                    }
+                    params: paramSearch
                 })
                 setTotalPages(res.data.data.products.totalPages)
                 setData(res.data.data.products.result)
@@ -54,6 +65,14 @@ const ProductListComponent = () => {
             console.log(error)
         }
         setLoading(false)
+    }
+    const handleOrder = (value) => {
+        if (value === order.sortBy) {
+            if (order.order === 'ASC') setOrder({ ...order, order: 'DESC' })
+            else setOrder({ ...order, order: 'ASC' })
+        } else {
+            setOrder({ ...order, sortBy: value, order: 'ASC' })
+        }
     }
     const handleSearchDebounce = useRef(_.debounce(async (value) => {
         setLoading(true)
@@ -96,7 +115,7 @@ const ProductListComponent = () => {
     useEffect(() => {
         fetchData()
         setIsDelete(false)
-    }, [currentPage, size, isDelete])
+    }, [currentPage, size, isDelete, order])
 
     useEffect(() => {
         return () => {
@@ -127,13 +146,13 @@ const ProductListComponent = () => {
                     {loading ? <LoadingComponent /> : <>
                         <table>
                             <tr>
-                                <th style={{ width: '5%', textAlign: 'center' }}>ID</th>
-                                <th style={{ width: '20%' }}>Product</th>
-                                <th style={{ width: '15%' }}>Brand</th>
-                                <th style={{ width: '15%' }}>Category</th>
-                                <th style={{ width: '15%' }}>Stock</th>
-                                <th style={{ width: '10%' }}>Price</th>
-                                <th style={{ width: '15%', textAlign: 'center' }}>Rating</th>
+                                <th style={{ width: '5%', textAlign: 'center' }} onClick={() => handleOrder('id')}>ID</th>
+                                <th style={{ width: '20%' }} onClick={() => handleOrder('name')}>Product</th>
+                                <th style={{ width: '15%' }} onClick={() => handleOrder('brand')}>Brand</th>
+                                <th style={{ width: '15%' }} onClick={() => handleOrder('category')}>Category</th>
+                                <th style={{ width: '15%' }} onClick={() => handleOrder('countInStock')}>Stock</th>
+                                <th style={{ width: '10%' }} onClick={() => handleOrder('price')}>Price</th>
+                                <th style={{ width: '15%', textAlign: 'center' }} onClick={() => handleOrder('rating')}>Rating</th>
                                 <th></th>
                             </tr>
                             {data.map((el, index) => (
