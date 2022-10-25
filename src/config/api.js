@@ -23,3 +23,4 @@ export const updateMedia = `${urlApi}/v1/media/`
 
 export const queryUser = `${urlApi}/v1/users`
 export const createUser = `${urlApi}/v1/users`
+export const deleteUser = `${urlApi}/v1/users/`
