@@ -230,7 +230,7 @@ const ProductEditComponent = () => {
                             </div>
                         </ProductCreateComponent>
                     </div>
-                    <div style={{ width: '25%' }}>
+                    <div style={{ width: '27%' }}>
                         <ProductCreateComponent label={'Images'} style={{ height: '260px' }}>
                             <div style={{ height: '100px', textAlign: 'center' }}>
                                 {loadingUpload ? <><LoadingComponent /></> : <>
