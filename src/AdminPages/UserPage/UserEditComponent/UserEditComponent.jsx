@@ -114,7 +114,7 @@ const UserEditComponent = () => {
             {
                 loading ? <LoadingComponent /> : <>
                     <AdminCustomSeparator breadcums={[{ label: 'User', href: '/userList' }, { label: `Update User #${id}` }]} />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%' }}>
+                    <div style={{ display: 'flex', maxWidth: '100%' }}>
                         <Typography fontSize={35} fontWeight={600}>Update User #{id}</Typography>
                         <LoadingButton loading={loadingAdd} sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={formik.handleSubmit}>Update User</LoadingButton>
                     </div>

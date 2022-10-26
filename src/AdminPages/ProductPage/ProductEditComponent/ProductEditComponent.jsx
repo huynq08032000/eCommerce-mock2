@@ -157,9 +157,9 @@ const ProductEditComponent = () => {
                 <div>
                     <Typography fontFamily={'Work Sans'} fontWeight={500} fontSize={16} color={'#929395'}>ProductId : {id}</Typography>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px 0px 25px', }}>
-                    <div>
-                        <ProductCreateComponent label={'Basic Information'} style={{ width: '676px', height: '730px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0px 25px', }}>
+                    <div style={{width : '70%'}}>
+                        <ProductCreateComponent label={'Basic Information'} style={{height: '730px' }}>
                             <div className="input-wrapper" style={{ marginBottom: '20px' }}>
                                 <Typography fontSize={18} fontWeight={700}>Name</Typography>
                                 <TextField

@@ -124,9 +124,9 @@ const ProductAddComponent = () => {
                 <Typography fontSize={35} fontWeight={600}>Create Product</Typography>
                 <LoadingButton loading={loadingAdd} sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={formik.handleSubmit}>Add product</LoadingButton>
             </div>
-            <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px 0px 25px', }}>
-                <div>
-                    <ProductCreateComponent label={'Basic Information'} style={{ width: '676px', height: '730px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0px 25px', }}>
+                <div style={{width : '70%'}}>
+                    <ProductCreateComponent label={'Basic Information'} style={{ width: '100%', height: '730px' }}>
                         <div className="input-wrapper" style={{ marginBottom: '20px' }}>
                             <Typography fontSize={18} fontWeight={700}>Name</Typography>
                             <TextField
