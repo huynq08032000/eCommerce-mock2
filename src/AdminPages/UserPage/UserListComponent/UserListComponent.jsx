@@ -145,9 +145,9 @@ const UserListComponent = () => {
                                             <div style={{ margin: '5px 10px 0 0 ' }}>
                                                 <Avatar style={{ width: '60px', height: '60px', boxShadow: '0.5px 0.5px 12px rgba(0, 0, 0, 0.25)', borderRadius: '0' }} src={el.avatar} />
                                             </div>
-                                            <div style={{ width: '250px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
+                                            <div style={{ width: '250px' }}>
                                                 <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-                                                    <Typography style={styleTyph} width={100} height={34} overflow={'hidden'}>{el.username}</Typography>
+                                                    <Typography style={styleTyph} width={140} textOverflow={'ellipsis'} whiteSpace={'nowrap'} overflow={'hidden'} className='user-name-table' onClick={() => navigate(`/userDetail/${el.id}`)}>{el.username}</Typography>
                                                     <div style={{ height: '34px', borderRadius: '10px', padding: '5px 20px', background: `${colorWithRole(el.role).bgcolor}` }}>
                                                         <Typography color={colorWithRole(el.role).color}>{modifyLetter(el.role)}</Typography>
                                                     </div>

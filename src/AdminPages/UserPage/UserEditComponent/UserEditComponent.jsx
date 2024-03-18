@@ -2,8 +2,7 @@ import { Avatar, Button, FormControl, FormControlLabel, MenuItem, Radio, RadioGr
 import React, { useEffect, useRef, useState } from "react";
 import AdminCustomSeparator from "../../AdminComponents/AdminBreadCrumbsComponent/AdminCustomSeparator";
 import ProductCreateComponent from "../../ProductPage/ProductAddComponent/ProductCreateComponent";
-import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { createProduct, createUser, getUserByID, updateUser, uploadApi } from "../../../config/api";
+import { getUserByID, updateUser, uploadApi } from "../../../config/api";
 import LoadingComponent from "../../../Components/LoadingComponent/LoadingComponent";
 import { useFormik } from "formik";
 import * as yup from "yup";
@@ -13,7 +12,6 @@ import axiosInstance from "../../../ultis/customAxios";
 import { LoadingButton } from "@mui/lab";
 import { regexContact, regexEmail } from "../../../ultis/ultis";
 import { useParams } from "react-router-dom";
-import { add } from "lodash";
 
 const validationSchema = yup.object({
     username: yup
@@ -38,6 +36,7 @@ const UserEditComponent = () => {
     const [verifyContact, setVerifyContact] = useState(false)
     const [loading, setLoading] = useState(false)
     const emailCurrent = useRef()
+    const contactCurrent = useRef()
     const formik = useFormik({
         initialValues: {
             username: '',
@@ -59,7 +58,8 @@ const UserEditComponent = () => {
             }
             if (addValues.contact === '') delete addValues.contact
             if (emailCurrent.current === values.email) delete addValues.email
-            if (image !== '') addValues.avatar = image
+            if (contactCurrent.current === values.contact) delete addValues.contact
+            if (image !== '' && image != null) addValues.avatar = image
             handleUpdate(addValues)
         }
     });
@@ -96,6 +96,7 @@ const UserEditComponent = () => {
             if (result.contact === null) result.contact = ''
             formik.setValues(result)
             emailCurrent.current = result.email
+            contactCurrent.current = result.contact
             setImage(res.data.data.avatar)
             setStatus(res.data.data.isActive)
             setVerifyEmail(res.data.data.isEmailVerified)
@@ -113,16 +114,16 @@ const UserEditComponent = () => {
             {
                 loading ? <LoadingComponent /> : <>
                     <AdminCustomSeparator breadcums={[{ label: 'User', href: '/userList' }, { label: `Update User #${id}` }]} />
-                    <div style={{ display: 'flex', justifyContent: 'space-between', maxWidth: '100%' }}>
+                    <div style={{ display: 'flex', justifyContent : 'space-between',maxWidth: '100%' }}>
                         <Typography fontSize={35} fontWeight={600}>Update User #{id}</Typography>
                         <LoadingButton loading={loadingAdd} sx={{ backgroundColor: '#FFD333', color: '#000000', textTransform: 'none', fontSize: '20px', fontWeight: '600' }} onClick={formik.handleSubmit}>Update User</LoadingButton>
                     </div>
                     <div>
                         <Typography fontFamily={'Work Sans'} fontWeight={500} fontSize={16} color={'#929395'}>User ID : {id}</Typography>
                     </div>
-                    <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px 0px 25px', }}>
-                        <div>
-                            <ProductCreateComponent label={'Basic Information'} style={{ width: '676px', height: '730px' }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0px 25px', }}>
+                        <div style={{width : '70%'}}>
+                            <ProductCreateComponent label={'Basic Information'} style={{ height: '730px' }}>
                                 <div className="input-wrapper" style={{ marginBottom: '20px' }}>
                                     <Typography fontSize={18} fontWeight={700}>Name</Typography>
                                     <TextField
@@ -189,8 +190,8 @@ const UserEditComponent = () => {
                                 </div>
                             </ProductCreateComponent>
                         </div>
-                        <div>
-                            <ProductCreateComponent label={'Images'} style={{ width: '431px', height: '260px' }}>
+                        <div style={{width : '27%'}}>
+                            <ProductCreateComponent label={'Images'} style={{  height: '260px' }}>
                                 <div style={{ height: '100px', display: 'flex', justifyContent: 'center' }}>
                                     {loadingUpload ? <LoadingComponent /> : <>
                                         <Avatar style={{ height: '100px', width: '100px', boxShadow: '0.5px 0.5px 12px rgba(0, 0, 0, 0.25)', borderRadius: '0' }} src={image} />
@@ -204,7 +205,7 @@ const UserEditComponent = () => {
                                     </Button>
                                 </div>
                             </ProductCreateComponent>
-                            <ProductCreateComponent label={'Another Infor'} style={{ width: '431px', height: '458px', marginTop: '15px' }}>
+                            <ProductCreateComponent label={'Another Infor'} style={{ height: '458px', marginTop: '15px' }}>
                                 <div className="input-wrapper" style={{ marginTop: '10px', width: '100%' }}>
                                     <Typography fontSize={18} fontWeight={700}>Contact</Typography>
                                     <TextField

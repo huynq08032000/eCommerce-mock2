@@ -157,9 +157,9 @@ const ProductEditComponent = () => {
                 <div>
                     <Typography fontFamily={'Work Sans'} fontWeight={500} fontSize={16} color={'#929395'}>ProductId : {id}</Typography>
                 </div>
-                <div style={{ display: 'flex', justifyContent: 'space-around', padding: '20px 0px 25px', }}>
-                    <div>
-                        <ProductCreateComponent label={'Basic Information'} style={{ width: '676px', height: '730px' }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', padding: '20px 0px 25px', }}>
+                    <div style={{ width: '70%' }}>
+                        <ProductCreateComponent label={'Basic Information'} style={{ height: '730px' }}>
                             <div className="input-wrapper" style={{ marginBottom: '20px' }}>
                                 <Typography fontSize={18} fontWeight={700}>Name</Typography>
                                 <TextField
@@ -230,8 +230,8 @@ const ProductEditComponent = () => {
                             </div>
                         </ProductCreateComponent>
                     </div>
-                    <div>
-                        <ProductCreateComponent label={'Images'} style={{ width: '431px', height: '260px' }}>
+                    <div style={{ width: '27%' }}>
+                        <ProductCreateComponent label={'Images'} style={{ height: '260px' }}>
                             <div style={{ height: '100px', textAlign: 'center' }}>
                                 {loadingUpload ? <><LoadingComponent /></> : <>
                                     {image.url === '' ? <UploadFileIcon sx={{ height: '92px', width: '77px' }} /> : <>
@@ -246,7 +246,7 @@ const ProductEditComponent = () => {
                                 </Button>
                             </div>
                         </ProductCreateComponent>
-                        <ProductCreateComponent label={'Categories'} style={{ width: '431px', height: '184px', marginTop: '20px' }}>
+                        <ProductCreateComponent label={'Categories'} style={{height: '184px', marginTop: '20px' }}>
                             <div className="input-wrapper" style={{ marginTop: '10px', width: '100%' }}>
                                 {loading ? <><LoadingComponent /></> : <>
                                     <Autocomplete
@@ -287,7 +287,7 @@ const ProductEditComponent = () => {
 
                             </div>
                         </ProductCreateComponent>
-                        <ProductCreateComponent label={'Rating'} style={{ width: '431px', height: '241px', marginTop: '20px' }}>
+                        <ProductCreateComponent label={'Rating'} style={{ height: '241px', marginTop: '20px' }}>
                             <div className="input-wrapper" style={{ marginTop: '30px', width: '100%' }}>
                                 <FormControl sx={{ width: '100%' }}>
                                     <Select

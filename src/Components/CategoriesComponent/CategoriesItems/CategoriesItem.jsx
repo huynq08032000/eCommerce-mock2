@@ -10,7 +10,7 @@ const CategoriesItem = ({ cate }) => {
         dispatch(setCategory(cate))
     }
     const addActiveClass= (category) => {
-        if (category===cate) return "cate-item active"
+        if (category===cate) return "cate-item cate-active"
         return "cate-item"
     }
     return (
